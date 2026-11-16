@@ -62,3 +62,9 @@ Decision: Non-commercial personal tool — no monetization, pricing, or viabilit
 Trigger: user statement
 Affects: Brainstorm-Brief (viable class N/A)     Decided by: human · approved: y
 Supersedes: —
+
+## D-011 · prototype · 2026-11-16 · status: proposed
+Decision: Use the owner's Figma "Power Moves Design System" as the base (tokens, type, components, Lucide stroke icons). Pending: how to reconcile its sleek dark-SaaS look with the requested "cute, encouraging" feel.
+Trigger: user ask
+Affects: Prototype     Decided by: human (base) · approved: pending style ruling
+Supersedes: —

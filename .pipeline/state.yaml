@@ -18,7 +18,14 @@ gates:
     artifact: ""
     artifact_sha: ""
     passed_at: ""
-    design_prefs: {}
+    design_prefs:
+      source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
+      adjectives: [cute, encouraging]
+      tokens: "teal-400 #4dd9b8 brand-primary · coral-400 #e8655a brand-cta · neutral 0–1000 · dark + light semantic sets"
+      type: "Inter (Display/Heading/Body/Label/Eyebrow) + JetBrains Mono for numbers"
+      icons: "Lucide, stroke-only, currentColor, 16/20/24px"
+      components: "ButtonPrimary/Ghost/Link, Input, Card, Badge/Pill, Eyebrow, Section divider, Nav"
+      open: "tension — system is sleek/dark SaaS; user wants cute (see D-011)"
     validation: { assumption_class: "", method: "founder-as-user", verdict: "", decision: "" }
   architecture-checkpoint: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
   api-contract-definition: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
