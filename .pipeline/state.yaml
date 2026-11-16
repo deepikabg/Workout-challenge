@@ -14,9 +14,9 @@ gates:
     wedge_verdict: n/a           # personal tool, no market
   eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "c0d5c482d8e7", passed_at: "2026-11-16" }
   prototype:
-    status: in-progress
-    artifact: ""
-    artifact_sha: ""
+    status: in-review            # awaiting founder cold-drive + triad approval
+    artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
+    artifact_sha: "e1fec35597d4"
     passed_at: ""
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
@@ -28,7 +28,7 @@ gates:
       workout_icons: "custom illustrations in teal/coral palette (D-011)"
       title: "Dee's workout challenge"
       mode: "dark + light, follows system"
-    validation: { assumption_class: "", method: "founder-as-user", verdict: "", decision: "" }
+    validation: { assumption_class: "usable", method: "founder-as-user cold-drive on phone", verdict: "", decision: "" }
   architecture-checkpoint: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
   api-contract-definition: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
   security-baseline:     { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
