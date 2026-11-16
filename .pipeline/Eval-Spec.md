@@ -33,7 +33,7 @@ Dimensions used: date (window start / end / today / outside window / late-night 
 | Anon/third-party write succeeds | RLS missing or `using(true)` on write | low×catastrophic | guardrail | G-01..G-04 |
 | Service key shipped to browser | wrong key in config | low×catastrophic | guardrail | G-05 |
 | Stale PWA cache | service worker serves cached data → wrong count | med×med | test | P-02 |
-| Owner session lost in home-screen app | magic-link opens Safari, not PWA | med×med | test | J-2 step 2 (6-digit code flow) |
+| Owner session lost in home-screen app | email-link sign-in opens Safari, not PWA | med×med | test | J-2 step 2 (password sign-in in-app, D-029) |
 
 ## Counting Test Cases (binary, all must pass)
 Clock = 2026-11-16 12:00 America/Toronto unless stated. Seed = the 5 backfilled workouts.
@@ -64,7 +64,7 @@ Clock = 2026-11-16 12:00 America/Toronto unless stated. Seed = the 5 backfilled 
 | # | Journey | Steps | Binary pass criterion | Priority |
 |---|---|---|---|---|
 | J-1 | Friend views progress | open public URL in a fresh browser, no login | headline, calendar (5 filled days with icons), stats, today's quote render; History page lists all workouts; no add/edit controls visible | P0 |
-| J-2 | Owner logs a workout from phone | open app → sign in once (email code) → tap type → confirm duration → save | new entry appears; headline updates (e.g. 25/38 → 24/38) within 2 s; ≤3 taps after sign-in | P0 |
+| J-2 | Owner logs a workout from phone | open app → sign in once (email + password) → tap type → confirm duration → save | new entry appears; headline updates (e.g. 25/38 → 24/38) within 2 s; ≤3 taps after sign-in | P0 |
 | J-3 | Owner logs a short workout | log Home yoga 20 min | entry saved, greyed on calendar + log, count unchanged, total minutes +20 | P0 |
 | J-4 | Owner fixes a mistake | History page → tap entry → edit duration or delete | count/calendar/stats recompute correctly | P0 |
 | J-5 | Install to home screen | browser "Add to Home Screen" | icon appears; opens standalone; shows current (not cached-stale) data; owner stays signed in across opens within 48 h | P0 |

@@ -404,14 +404,14 @@ const X=`<button class="x" data-close aria-label="Close"><svg width="16" height=
 
 function signInSheet(){
   openSheet(`<div class="row"><h3>Sign in</h3>${X}</div>
-   <div id="step1"><label class="lab" for="email">Your email</label><input class="field" id="email" type="email" value="dee@example.com" data-autofocus>
-   <p class="muted" style="font-size:13px;margin:8px 0 14px">We'll email you a 6-digit code. Only Dee's email can log workouts.</p><p class="note warn" style="margin:0 0 14px">Preview only: no email is sent yet. Email codes start working once the app is connected to Supabase.</p>
-   <button class="cta" id="send">Email me a code</button></div>
-   <div id="step2" hidden><label class="lab" for="c1">Enter the 6-digit code</label><input class="field num" id="c1" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="one-time-code">
-   <p class="muted" style="font-size:13px;margin:8px 0 14px">Preview only: use <strong class="num">123456</strong>.</p><p class="note warn" id="cerr" hidden>That code needs 6 digits. In this preview, use 123456.</p>
-   <button class="cta" id="verify">Sign in</button></div>`,()=>{
-    $("#send").onclick=()=>{$("#step1").hidden=true;$("#step2").hidden=false;$("#c1").focus()};
-    $("#verify").onclick=()=>{if($("#c1").value.replace(/\D/g,"").length<6){$("#cerr").hidden=false;return}signedIn=true;closeSheet();render();toast("Signed in. You'll stay signed in unless you're away for 2 days.")};
+   <form id="signform" style="display:flex;flex-direction:column;gap:12px">
+   <div><label class="lab" for="email">Email</label><input class="field" id="email" type="email" autocomplete="username" value="dee@example.com" data-autofocus></div>
+   <div><label class="lab" for="pw">Password</label><input class="field" id="pw" type="password" autocomplete="current-password"></div>
+   <p class="muted" style="font-size:13px;margin:0">Only Dee can sign in and log workouts. You'll stay signed in unless you're away for 2 days.</p>
+   <p class="note warn" id="perr" hidden>That email and password don't match. Try again.</p>
+   <p class="note warn" style="margin:0">Preview only: any password works here.</p>
+   <button class="cta" id="verify" type="submit">Sign in</button></form>`,()=>{
+    $("#signform").onsubmit=ev=>{ev.preventDefault();if(!$("#pw").value){$("#perr").hidden=false;return}signedIn=true;closeSheet();render();toast("Signed in. You'll stay signed in unless you're away for 2 days.")};
   });
 }
 

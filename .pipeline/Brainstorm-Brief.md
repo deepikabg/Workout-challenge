@@ -23,7 +23,7 @@ Parked: social features (cheers/comments), reminders/notifications.
 Who: the owner (single writer), plus a handful of friends (readers, no accounts).
 Job: When I finish a class at the Central YMCA Toronto or a workout at home, I want to log it in seconds, so I can see my challenge count move and know whether I'm on pace.
 Journey: leave class → open home-screen app (PWA, D-004) → tap type → confirm duration → see count update. Friends: open shared link any time → see count, calendar, stats, log.
-Painpoint: phone sign-in must not need repeating; home-screen PWAs on iOS don't share Safari's login, so emailed magic links are a trap → prefer an in-app 6-digit email code (to confirm at architecture-checkpoint).
+Painpoint: phone sign-in must not need repeating; home-screen PWAs on iOS don't share Safari's login, so emailed magic links are a trap → in-app email + password sign-in (D-029; emailed codes would need custom SMTP on the free plan).
 
 ## Counting Rules (locked — D-002, D-005, D-006, D-007)
 - Every workout type counts: YMCA classes, solo gym at the Y, at-home workouts.

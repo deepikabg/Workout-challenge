@@ -20,8 +20,7 @@ Scale: prototype/internal — one first-party consumer (this web app), shipped t
 | Update | `from('workouts').update({day,type,location,minutes}).eq('id',id)` | owner | |
 | Delete | `from('workouts').delete().eq('id',id)` | owner | UI confirms in-page (tap twice). |
 | Live | `channel('workouts').on('postgres_changes',{event:'*',schema:'public',table:'workouts'},refetch)` | anon, owner | On any event → refetch list (simple, consistent). |
-| Request code | `auth.signInWithOtp({email,options:{shouldCreateUser:false}})` | anyone | Only the existing owner account can receive a code. |
-| Verify code | `auth.verifyOtp({email,token,type:'email'})` | anyone | |
+| Sign in | `auth.signInWithPassword({email,password})` | anyone | Only the existing owner account can succeed; no sign-up call exists in the client (D-029). |
 | Sign out | `auth.signOut()` | owner | |
 
 ## Error taxonomy → UI copy
@@ -30,9 +29,8 @@ Scale: prototype/internal — one first-party consumer (this web app), shipped t
 | `NETWORK` | fetch failure / offline | "Can't reach the server. Showing your last saved progress." |
 | `NOT_ALLOWED` | PostgREST 401/403, RLS 42501 | "Only Dee can log workouts. Sign in to make changes." |
 | `INVALID_INPUT` | Postgres 23514 check violation | "That date or duration isn't valid for the challenge (Nov 9 – Dec 23, 1–600 min)." |
-| `CODE_INVALID` | verifyOtp error | "That code didn't work. Check the latest email or request a new code." |
-| `CODE_RATE_LIMIT` | auth 429 | "Too many codes requested. Wait a minute, then try again." |
-| `SIGNIN_UNKNOWN_EMAIL` | otp for non-owner (signups off) | "This email can't sign in here." |
+| `BAD_CREDENTIALS` | signInWithPassword 400 invalid_credentials | "That email and password don't match. Try again." |
+| `RATE_LIMIT` | auth 429 | "Too many tries. Wait a minute, then try again." |
 | `UNKNOWN` | anything else | "Something went wrong. Try again in a moment." (+ console detail) |
 
 ## Scenarios
@@ -41,8 +39,8 @@ Scale: prototype/internal — one first-party consumer (this web app), shipped t
 3. Owner retries same save after timeout → same `id` → no duplicate row.
 4. Anon tries insert via devtools → 401/42501 → `NOT_ALLOWED` (G-01).
 5. Owner logs day 2026-12-24 → 23514 → `INVALID_INPUT` (C-06 backstop).
-6. Stranger requests code for their email → error → `SIGNIN_UNKNOWN_EMAIL`, no account created (G-04).
-7. Owner enters wrong code → `CODE_INVALID`; requests 5 codes fast → `CODE_RATE_LIMIT`.
+6. Stranger tries to sign in with their email → `BAD_CREDENTIALS` (same message as a wrong password — no account enumeration); sign-ups disabled so no account can be created (G-04).
+7. Owner mistypes password → `BAD_CREDENTIALS`; many fast attempts → `RATE_LIMIT`.
 8. Supabase unreachable → `NETWORK` banner + cached data.
 
 ## Backwards-compatibility promise

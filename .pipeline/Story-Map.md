@@ -22,7 +22,7 @@ Spec-readiness (inline, 2026-11-16): 0 blocking questions after replaying D-026;
 - **S-004 Read-only UI port** (needs S-001, S-002) — port prototype v6 (home: hero, quote, calendar, stats, history link; #history page) onto `data.js` list + localStorage last-known cache; offline/error banners; vendored supabase-js (D-026). *Criteria:* J-1, C-01, C-13, P-02 (data never SW-cached — UI half), NETWORK copy. *Screens:* home, history, offline banner. *Files:* index.html, styles.css, src/ui.js, src/data.js, vendor/.
 
 **Batch 3**
-- **S-005 Owner sign-in** (needs S-004; **blocked on H-1, H-2**) — "Dee? Sign in" → email → 6-digit code → session; sign-out; 48 h inactivity sign-out; CODE_* error copy. *Criteria:* C-14, G-04 (shouldCreateUser:false), J-2 step 1. *Files:* src/auth.js, src/ui.js (header + sheet).
+- **S-005 Owner sign-in** (needs S-004; H-1 done) — "Dee? Sign in" → email + password → session (D-029); sign-out; 48 h inactivity sign-out; BAD_CREDENTIALS/RATE_LIMIT error copy. *Criteria:* C-14, G-04 (shouldCreateUser:false), J-2 step 1. *Files:* src/auth.js, src/ui.js (header + sheet).
 
 **Batch 4**
 - **S-006 Owner write path + seed** (needs S-005, S-002; **blocked on H-1** for owner UUID) — migration `002_owner_policy.sql` (insert/update/delete only for owner UUID), migration `003_seed.sql` (the 5 backfilled workouts); log sheet, history edit/delete, idempotent upsert with client UUID, under-minimum warning, error taxonomy. Then **H-3** (disable sign-ups). *Criteria:* J-2, J-3, J-4, J-6, G-03, G-04, C-03, C-09, C-10 (celebration UI). *Files:* db/, src/data.js, src/ui.js.
@@ -38,8 +38,8 @@ Spec-readiness (inline, 2026-11-16): 0 blocking questions after replaying D-026;
 ## Human tasks (owner, in the Supabase dashboard — ~5 min total)
 | # | When | What | Why |
 |---|---|---|---|
-| H-1 | after S-002 | Authentication → Users → **Add user** → your email (no password) | creates the one owner account; sign-ups stay off |
-| H-2 | after S-002 | Authentication → Email templates → **Magic Link**: include `{{ .Token }}` (I'll give exact text) | so the email contains a 6-digit code |
+| H-1 | after S-002 | Authentication → Users → **Add user** → your email **with a password** ✅ done | creates the one owner account; sign-ups stay off |
+| ~~H-2~~ | — | ~~Email template with code~~ — dropped: free plan needs custom SMTP to edit templates; switched to password sign-in (D-029) | — |
 | H-3 | after S-006 | Authentication → Sign In / Providers → turn **off** "Allow new users to sign up" | stranger can't create an account (G-04) |
 | H-4 | deploy-gate | Settings → Pages → Source: **GitHub Actions**; merge the PR to `main` | go live (deploy approval) |
 

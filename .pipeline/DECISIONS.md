@@ -171,3 +171,10 @@ Decision: Owner pre-approves the Supabase irreversibles (create project, run sch
 Trigger: owner approval in chat
 Affects: —     Decided by: human · approved: y
 Supersedes: —
+
+## D-029 · auth · 2026-11-16 · status: applied
+Decision: Owner signs in with email + password instead of an emailed 6-digit code. Owner account recreated in the dashboard with a password (new auth id 7bcf9a92-b2ba-4992-9b33-a1313a70e446; the earlier no-password account was removed). H-2 dropped. 48 h inactivity sign-out (D-022), owner-only writes and sign-ups-off unchanged.
+Trigger: Supabase free plan requires custom SMTP before email templates can be edited; owner chose password over setting up Gmail SMTP.
+Rationale + alternatives: (b) Gmail SMTP + code — 10 min setup, Gmail becomes sender; (c) default magic link — opens Safari not the PWA. Rejected.
+Affects: Brainstorm-Brief · Eval-Spec (J-2, taxonomy row) · Prototype (sign-in sheet v7) · Architecture · Contract · Security-Baseline · Story-Map (S-005, H-2)     Decided by: human · approved: y — owner's choice is taken as triad re-approval for this change
+Supersedes: OTP parts of D-021, D-018 (owner identity now by new uid)

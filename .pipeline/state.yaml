@@ -7,16 +7,16 @@ pipeline:
   created: "2026-11-16"
 
 gates:
-  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "4735eebcfdb4", passed_at: "2026-11-16" }
+  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "f5187568e5a4", passed_at: "2026-11-16" }
   market-scan:
     status: skipped(D-001)
     recon_done: false
     wedge_verdict: n/a           # personal tool, no market
-  eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "922ee203af34", passed_at: "2026-11-16" }
+  eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "b91ebb36bae8", passed_at: "2026-11-16" }
   prototype:
     status: passed
     artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
-    artifact_sha: "1c49bdce5c33"
+    artifact_sha: "9a60f4770a70"
     passed_at: "2026-11-16"
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
@@ -29,13 +29,13 @@ gates:
       title: "Dee's workout challenge"
       mode: "dark + light, follows system"
     validation: { assumption_class: "usable", method: "founder-as-user cold-drive on phone", verdict: "inconclusive", evidence: "owner drove sign-in + logging; friction found and fixed (demo code); tap count not measured — re-check in qa-verify J-2", decision: "proceed" }
-  architecture-checkpoint: { status: passed, artifact: ".pipeline/Architecture.md", artifact_sha: "45ec69963126", passed_at: "2026-11-16" }
-  api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "0dcb558cad70", passed_at: "2026-11-16" }
-  security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "77e499cf0611", passed_at: "2026-11-16" }
+  architecture-checkpoint: { status: passed, artifact: ".pipeline/Architecture.md", artifact_sha: "82a2ffb807dc", passed_at: "2026-11-16" }
+  api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "c49b5536b2c3", passed_at: "2026-11-16" }
+  security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "c8f833986048", passed_at: "2026-11-16" }
   story-map:
     status: passed
     artifact: ".pipeline/Story-Map.md"
-    artifact_sha: "3ed858948b72"
+    artifact_sha: "1aec7add97d5"
     passed_at: "2026-11-16"
     traceability: complete
     plan_approved_by: "owner (chat) 2026-11-16"
@@ -49,8 +49,8 @@ gates:
 triad_approval:
   approved: true
   approved_by: owner (chat)
-  at: "2026-11-16"   # re-approved after D-022/D-023/D-026 changes (prototype v6)
-  shas: { brief: "4735eebcfdb4", eval_spec: "922ee203af34", prototype: "1c49bdce5c33" }
+  at: "2026-11-16"   # re-approved via owner decision D-029 (password sign-in, prototype v7)
+  shas: { brief: "f5187568e5a4", eval_spec: "b91ebb36bae8", prototype: "9a60f4770a70" }
 
 intake:
   source_doc: "chat requirements 2026-11-16 (see Brainstorm-Brief.md once written)"
@@ -196,8 +196,8 @@ build:
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
   human_tasks:
-    - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: done, owner_uuid: "3f60de94-9de0-46a7-b967-c759d4d20091" }
-    - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: pending }
+    - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: done, owner_uuid: "7bcf9a92-b2ba-4992-9b33-a1313a70e446", note: "recreated with password (D-029)" }
+    - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: dropped, reason: "D-029 password sign-in" }
     - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: pending }
     - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
 

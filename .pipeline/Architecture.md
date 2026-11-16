@@ -17,7 +17,7 @@ Depth: standard internal tool (single owner, ~10 readers, 45-day life, $0). Not 
         │
         ▼  HTTPS (anon key = public by design)
  Supabase project "workout-challenge" (region ca-central-1, free)
-   ├─ Auth: email OTP (6-digit code), sign-ups disabled after owner account exists
+   ├─ Auth: email + password (D-029), sign-ups disabled after owner account exists
    ├─ Postgres: public.workouts + RLS
    └─ Realtime: postgres_changes on workouts → live updates (D-015)
  GitHub Actions: weekly keep-alive read (D-019) · CI tests on push
@@ -30,7 +30,7 @@ Depth: standard internal tool (single owner, ~10 readers, 45-day life, $0). Not 
 | `vendor/supabase.js` | supabase-js browser bundle, exact version, copied from npm (D-026). |
 | `src/config.js` | Challenge constants, workout types, Supabase URL + anon key (public). |
 | `src/data.js` | Supabase calls: list, insert, update, delete, subscribe; localStorage last-known cache. |
-| `src/auth.js` | OTP request/verify, session, sign-out. |
+| `src/auth.js` | Password sign-in, session, 48 h inactivity sign-out, sign-out. |
 | `src/ui.js` | Render home / history / sheets (ported from approved prototype v4). |
 | `index.html`, `styles.css`, `manifest.webmanifest`, `sw.js`, `icons/` | Shell + PWA. |
 | `db/migrations/001_workouts.sql` | Schema + RLS + realtime publication. |
@@ -63,7 +63,7 @@ Read-heavy (friends) ~10 viewers, writes ~1/day. Free tier limits (500 MB DB, 20
 | Supabase unreachable / paused | Render last-known data from localStorage with an "offline / can't reach the server" banner; logging disabled with a clear message. Keep-alive (D-019) prevents pausing. |
 | Insert fails mid-flight | Sheet stays open with the entry and an error; retry re-sends the same client UUID → `upsert` on `id` is idempotent, no duplicates. |
 | Realtime socket drops | supabase-js reconnects; plus refetch on `visibilitychange` and every 60 s while visible. |
-| OTP email slow/not delivered | "Resend code" after 60 s; message explains checking spam. Built-in SMTP rate limit (few emails/hour) is acceptable for one user (assumption A-1). |
+| Wrong password / forgotten | Plain error; owner resets the password in the Supabase dashboard (Authentication → Users). No emails involved. |
 | Session expired in PWA | Refresh token auto-renews; if lost, header shows "Sign in" again. Friends unaffected. |
 | Bad date/duration input | DB check constraints reject; form validates first with plain-language errors. |
 | Service worker serves stale code | Network-first for `index.html`, versioned cache name per release, `skipWaiting` + reload prompt. Data is never cached by the SW (P-02). |
@@ -79,11 +79,12 @@ GitHub Pages $0 · Supabase free $0 · Actions minutes (weekly curl + CI) well u
 2. **React/Vite SPA** — nicer components, but adds a build/deploy pipeline for ~600 lines of UI. Rejected for time-to-launch; vanilla ES modules port the approved prototype directly.
 3. **Google Sheet as backend** — no auth model for owner-only writes from a public page. Rejected.
 4. **Supabase Edge Function API in front of the table** — extra moving part; RLS already enforces the only rule. Rejected.
-5. **Magic-link sign-in** — opens Safari, not the home-screen PWA (separate storage on iOS). Rejected for 6-digit OTP.
+5. **Magic-link sign-in** — opens Safari, not the home-screen PWA (separate storage on iOS). Rejected.
+6. **Email 6-digit OTP** — needs custom SMTP to edit the template on the free plan. Rejected for password sign-in (D-029).
 
 ## Open Assumptions
-- [ ] A-1: Supabase built-in email delivers OTP codes to the owner's address (project-owner email) within the free rate limit. *If wrong:* configure free custom SMTP (e.g. Resend) — deploy-gate item.
-- [ ] A-2: The OTP email template must include `{{ .Token }}`. *If wrong:* users get a link instead of a code → edit template in dashboard (deploy-gate step).
-- [ ] A-3: iOS keeps home-screen PWA localStorage (session) between opens. *If wrong:* owner re-enters a code occasionally; low impact.
+- [x] A-1: ~~OTP email delivery~~ — moot: password sign-in sends no email (D-029).
+- [x] A-2: ~~OTP template~~ — moot (D-029).
+- [ ] A-3: iOS keeps home-screen PWA localStorage (session) between opens. *If wrong:* owner re-enters the password occasionally; low impact.
 - [ ] A-4: Owner flips the repo to public before Pages is enabled (D-013). *If not:* Pages unavailable on free plan.
 - [ ] A-5: Supabase free plan allows a new active project in ca-central-1 (both existing projects are paused). *If wrong:* fall back to us-east-1.

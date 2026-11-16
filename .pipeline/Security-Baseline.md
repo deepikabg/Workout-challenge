@@ -3,7 +3,7 @@ Scale: public-facing static site + auth, minimal PII. Not AI-native (dimension 6
 
 ## Threat model
 - **Assets:** integrity of the workout log (the public count), the owner's account/session, the owner's email (only PII).
-- **Attackers & surface:** anonymous visitors (public page + public anon key + PostgREST/Realtime endpoints), anyone reading the public repo, someone requesting OTP codes, a compromised CDN script.
+- **Attackers & surface:** anonymous visitors (public page + public anon key + PostgREST/Realtime endpoints), anyone reading the public repo, someone guessing the owner's password (was: requesting OTP codes, a compromised CDN script.
 - **Trust boundaries:** browser → Supabase (all input untrusted; RLS + check constraints are the enforcement point); GitHub Actions → Supabase (keep-alive, read-only).
 
 ## 1. Secrets
@@ -21,12 +21,12 @@ Scale: public-facing static site + auth, minimal PII. Not AI-native (dimension 6
 - At rest: Supabase-managed disk encryption. Workout rows are non-sensitive public data by design. The email lives in Supabase Auth (managed). No app-level field encryption needed — documented as out of scope.
 
 ## 3. AuthN / AuthZ
-- **AuthN:** Supabase email OTP (6-digit), `shouldCreateUser:false`; **sign-ups disabled** in Auth settings after the owner account exists (G-04).
+- **AuthN:** Supabase email + password (D-029); the client has no sign-up call; **sign-ups disabled** in Auth settings (G-04). Password chosen by the owner in the dashboard; never stored in the repo. Same error for unknown email and wrong password (no enumeration).
 - **Session:** supabase-js refresh token in localStorage; **client-enforced 48 h inactivity sign-out (D-022)**. Accepted risk: a client-side timeout can be bypassed by someone who already holds the device + token; acceptable for a personal tracker (server-side inactivity timeouts are a paid feature).
 - **AuthZ (default-deny, in the DB):** RLS enabled on `workouts`; `select` → `anon, authenticated` (public by design); `insert/update/delete` → `authenticated` with `using/with check (auth.uid() = '<OWNER_UUID>')`. No policy for any other role/action → denied. `owner_id` defaults to `auth.uid()` and `with check` blocks spoofing.
 - Object-level: single owner → every write row must belong to the owner UUID; nobody else has write rows to reach.
-- **Error handling:** UI maps errors to generic copy (Contract.md); sign-in failure for a non-owner email shows "This email can't sign in here" — reveals that it is not the owner's email, which is acceptable (the owner is public: "Dee").
-- **Rate limits:** Supabase Auth built-in OTP rate limits (per email/IP). DB writes only possible for the owner.
+- **Error handling:** UI maps errors to generic copy (Contract.md); sign-in failure shows one generic message for any wrong email/password combination.
+- **Rate limits:** Supabase Auth built-in sign-in rate limits (per IP) against password guessing. DB writes only possible for the owner.
 - **XSS:** the UI renders only owner-entered enums/numbers/dates from the DB; all dynamic strings go through an `escapeHtml` helper; no `innerHTML` of free text (there are no free-text fields, D-008).
 
 ## 4. Compliance
