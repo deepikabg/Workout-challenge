@@ -1,0 +1,12 @@
+{
+ "at": "20261116T221444Z",
+ "scope": "story",
+ "story": "S-004",
+ "command": "npm test (30) + npm run e2e (J-1, J-1 offline)",
+ "passed": 32,
+ "failed": 0,
+ "evals": "J-1 pass (25/38, 5 counted cells, history 5, no write controls, no h-scroll); P-02 UI half + NETWORK banner pass",
+ "ship_gate": "BINDABLE",
+ "screenshot": ".pipeline/results/j1-friend-history.png",
+ "supabase_js": "2.118.0 vendored (2026-10-15)"
+}

@@ -19,8 +19,8 @@ export const TYPES = [
 ];
 
 // Supabase public settings (anon/publishable key is public by design; RLS enforces writes).
-export const SUPABASE_URL = '';
-export const SUPABASE_ANON_KEY = '';
+export const SUPABASE_URL = 'https://xuabtbdhpdlsrljjjdyc.supabase.co';
+export const SUPABASE_ANON_KEY = 'sb_publishable_sNZ2-8u1nVXJNOdS5SNPOQ_-ULQuSiL'; // publishable — safe in the browser
 
 export const QUOTES = [
   "Take care of your body. It's the only place you have to live.",
