@@ -1,0 +1,10 @@
+{
+ "at": "20261116T222143Z",
+ "scope": "story",
+ "story": "S-007",
+ "command": "npm test (46) + npm run e2e (9)",
+ "passed": 55,
+ "failed": 0,
+ "evals": "J-8 pass via 60s/focus backstop; realtime websocket path pending live check in qa-verify",
+ "ship_gate": "BINDABLE"
+}

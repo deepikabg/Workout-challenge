@@ -6,6 +6,7 @@ import { createAuth } from './auth.js';
 import { page } from './ui.js';
 import { openSheet, closeSheet, toast, X } from './sheets.js';
 import { bindOwner } from './log.js';
+import { startLive } from './live.js';
 
 const client = globalThis.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false },
@@ -57,6 +58,7 @@ function signInSheet() {
 
 addEventListener('hashchange', () => { render(); scrollTo(0, 0); });
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') auth.touch(); });
+startLive({ client, refresh });
 
 render();
 auth.init().catch(() => false).then(render);

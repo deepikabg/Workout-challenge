@@ -152,8 +152,8 @@ build:
       batch: 5
       parallel: true
       github_issue: 7
-      failing_test_written: false
-      status: pending
+      failing_test_written: true
+      status: done
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
     - id: S-008
@@ -269,6 +269,17 @@ test_runs:
     ship_gate: BINDABLE
     report_path: ".pipeline/results/20261116T222052Z-S-006.json"
     checkpoint_commit: "(see git log: checkpoint(S-006))"
+  - at: "20261116T222143Z"
+    scope: story
+    story: S-007
+    command: "npm test (46) + npm run e2e (9)"
+    passed: 55
+    failed: 0
+    eval_scores: { summary: "J-8 pass via 60s/focus backstop; realtime websocket path pending live check in qa-verify" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222143Z-S-007.json"
+    checkpoint_commit: "(see git log: checkpoint(S-007))"
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
