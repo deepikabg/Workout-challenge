@@ -14,7 +14,7 @@ Second-order: the public page makes progress visible to friends → accountabili
 3. **Shareability** — friends open one link, no account, and see everything; nobody but the owner can change anything.
 
 ## Prioritized Problem
-THE problem: Mid-challenge, the owner can't see at a glance how far along she is and whether she's on pace — and friends can't see it at all.
+THE problem: Mid-challenge, the owner can't see at a glance how far along they are and whether they are on pace — and friends can't see it at all.
 Stakes if unsolved: drift — "I'll catch up next week" until the math no longer works.
 Current alternative: mental tally / notes app; friends hear about it ad hoc.
 Parked: social features (cheers/comments), reminders/notifications.
