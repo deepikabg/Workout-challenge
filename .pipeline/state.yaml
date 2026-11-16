@@ -191,14 +191,14 @@ build:
       batch: 6
       parallel: false
       github_issue: 10
-      failing_test_written: false
-      status: pending
+      failing_test_written: true
+      status: done
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
   human_tasks:
     - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: done, owner_uuid: "7bcf9a92-b2ba-4992-9b33-a1313a70e446", note: "recreated with password (D-029)" }
     - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: dropped, reason: "D-029 password sign-in" }
-    - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: done, note: "owner-reported 2026-11-16 (dashboard setting; not SQL-verifiable — re-checked by G-04 in S-010)" }
+    - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: done, note: "verified live: /auth/v1/settings disable_signup=true (Actions run 43970030441)" }
     - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
 
 test_runs:
@@ -302,6 +302,17 @@ test_runs:
     ship_gate: BINDABLE
     report_path: ".pipeline/results/20261116T222352Z-S-009.json"
     checkpoint_commit: "(see git log: checkpoint(S-009))"
+  - at: "20261116T222638Z"
+    scope: story
+    story: S-010
+    command: "npm run loop-phase3 (local: 48 unit + 11 browser journeys, stubbed Supabase) + GitHub Actions live-security run 43970030441 (3 live, 0 skipped)"
+    passed: 62
+    failed: 0
+    eval_scores: { summary: "J-1..J-4, J-7, J-8 (backstop), P-01, P-02, C-14 pass in browser; LIVE J-1 data, J-6/G-01/G-02, G-04 pass against real project. Not yet verified: realtime websocket push, J-5 on a real phone, live-site render — qa-verify after deploy" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222638Z-S-010.json"
+    checkpoint_commit: "(see git log: checkpoint(S-010))"
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
