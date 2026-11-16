@@ -33,13 +33,13 @@ gates:
   api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "0dcb558cad70", passed_at: "2026-11-16" }
   security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "77e499cf0611", passed_at: "2026-11-16" }
   story-map:
-    status: in-progress
-    artifact: ""
-    artifact_sha: ""
+    status: awaiting-approval
+    artifact: ".pipeline/Story-Map.md"
+    artifact_sha: "3ed858948b72"
     passed_at: ""
-    traceability: ""
+    traceability: complete
     plan_approved_by: ""
-    github: { synced: false, project_url: "" }
+    github: { synced: true, project_url: "issues #1-#10 (labels batch-N); Projects board unavailable in this environment" }
   deploy-gate:           { status: pending, report: "", staging_url: "", prod_approved_by: "", approved_at: "" }
   qa-verify:
     pre_handoff: { status: pending, target: "localhost", report: "", verdict: "", day0_checklist: "" }
@@ -64,7 +64,142 @@ intake:
   gaps_resolved: true   # D-005..D-009
 
 build:
-  stories: []
+  stories:
+    - id: S-001
+      title: "Rules engine + config"
+      epic: E1
+      eval_criteria: ['C-01..C-14', 'C-15']
+      journey: "all"
+      depends_on: []
+      batch: 1
+      parallel: true
+      github_issue: 1
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-002
+      title: "Supabase project + schema"
+      epic: E2
+      eval_criteria: ['G-01', 'G-02', 'C-06']
+      journey: "J-1,J-6"
+      depends_on: []
+      batch: 1
+      parallel: true
+      github_issue: 2
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-003
+      title: "CI + secret scan + dirty fixtures"
+      epic: E5
+      eval_criteria: ['G-05', 'C-04', 'C-05', 'C-06', 'C-07', 'C-09']
+      journey: "-"
+      depends_on: ['S-001']
+      batch: 2
+      parallel: true
+      github_issue: 3
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-004
+      title: "Read-only UI port"
+      epic: E3
+      eval_criteria: ['J-1', 'C-01', 'C-13', 'P-02']
+      journey: "J-1"
+      depends_on: ['S-001', 'S-002']
+      batch: 2
+      parallel: true
+      github_issue: 4
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-005
+      title: "Owner sign-in"
+      epic: E4
+      eval_criteria: ['C-14', 'G-04', 'J-2']
+      journey: "J-2"
+      depends_on: ['S-004']
+      batch: 3
+      parallel: false
+      github_issue: 5
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-006
+      title: "Owner write path + seed"
+      epic: E2/E3
+      eval_criteria: ['J-2', 'J-3', 'J-4', 'J-6', 'J-7', 'G-03', 'G-04', 'C-03', 'C-09', 'C-10']
+      journey: "J-2,J-3,J-4"
+      depends_on: ['S-005', 'S-002']
+      batch: 4
+      parallel: false
+      github_issue: 6
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-007
+      title: "Live updates"
+      epic: E2
+      eval_criteria: ['J-8']
+      journey: "J-8"
+      depends_on: ['S-006']
+      batch: 5
+      parallel: true
+      github_issue: 7
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-008
+      title: "Installable PWA"
+      epic: E5
+      eval_criteria: ['P-01', 'P-02', 'J-5']
+      journey: "J-5"
+      depends_on: ['S-004']
+      batch: 5
+      parallel: true
+      github_issue: 8
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-009
+      title: "Keep-alive + Pages deploy"
+      epic: E5
+      eval_criteria: ['D-019', 'J-1']
+      journey: "J-1"
+      depends_on: ['S-003']
+      batch: 5
+      parallel: true
+      github_issue: 9
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-010
+      title: "Journey suite J-1..J-8"
+      epic: E5
+      eval_criteria: ['J-1..J-8', 'ship-gate']
+      journey: "all"
+      depends_on: ['S-001', 'S-002', 'S-003', 'S-004', 'S-005', 'S-006', 'S-007', 'S-008', 'S-009']
+      batch: 6
+      parallel: false
+      github_issue: 10
+      failing_test_written: false
+      status: pending
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+  human_tasks:
+    - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: pending }
+    - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: pending }
+    - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: pending }
+    - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
 
 test_runs: []
 
