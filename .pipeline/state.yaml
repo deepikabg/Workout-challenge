@@ -33,7 +33,7 @@ gates:
   api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "0dcb558cad70", passed_at: "2026-11-16" }
   security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "8932d2d96a72", passed_at: "2026-11-16" }
   story-map:
-    status: pending
+    status: in-progress
     artifact: ""
     artifact_sha: ""
     passed_at: ""
@@ -47,10 +47,10 @@ gates:
     prod:        { status: pending, report: "", verdict: "", monitoring_window_end: "" }
 
 triad_approval:
-  approved: false   # invalidated by D-022/D-023 (D-024); previously approved 2026-11-16
+  approved: true
   approved_by: owner (chat)
-  at: "2026-11-16"
-  shas: { brief: "41cbbe4891a9", eval_spec: "35efc2466048", prototype: "d419977d275a" }
+  at: "2026-11-16"   # re-approved after D-022/D-023/D-026 changes (prototype v6)
+  shas: { brief: "4735eebcfdb4", eval_spec: "922ee203af34", prototype: "1c49bdce5c33" }
 
 intake:
   source_doc: "chat requirements 2026-11-16 (see Brainstorm-Brief.md once written)"

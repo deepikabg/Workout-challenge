@@ -145,7 +145,7 @@ Supersedes: D-017
 ## D-024 · prototype · 2026-11-16 · status: accepted
 Decision: Triad invalidated by D-022/D-023 edits (Brief, Eval-Spec, Prototype re-hashed) → owner re-approval required before story-map. Architecture/contract unaffected.
 Trigger: hash mismatch rule
-Affects: triad_approval     Decided by: claude · approved: pending owner
+Affects: triad_approval     Decided by: claude · approved: y — owner re-approved prototype v6
 Supersedes: —
 
 ## D-025 · security · 2026-11-16 · status: accepted
@@ -158,4 +158,10 @@ Supersedes: —
 Decision: Vendor a pinned supabase-js browser bundle into the repo (from npm) instead of loading it from jsDelivr. Removes CDN runtime dependency (closes R-3) and works with this build environment, where jsDelivr and *.supabase.co are not reachable but the npm registry is. Supabase admin work (create project, migrations, RLS tests) goes through the Supabase connector.
 Trigger: connectivity check 2026-11-16
 Affects: Architecture (code layout) · Security-Baseline (R-3 closed)     Decided by: claude · approved: owner may object
+Supersedes: —
+
+## D-027 · prototype · 2026-11-16 · status: rejected
+Decision: Import owner's favourite quotes from their website — dropped by owner ("ignore my link, keep yours"). The site's quotes are images and were unreachable from the build environment.
+Trigger: owner ask, then withdrawn
+Affects: —     Decided by: human · approved: n/a
 Supersedes: —
