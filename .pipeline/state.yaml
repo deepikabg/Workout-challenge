@@ -165,8 +165,8 @@ build:
       batch: 5
       parallel: true
       github_issue: 8
-      failing_test_written: false
-      status: pending
+      failing_test_written: true
+      status: done
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
     - id: S-009
@@ -280,6 +280,17 @@ test_runs:
     ship_gate: BINDABLE
     report_path: ".pipeline/results/20261116T222143Z-S-007.json"
     checkpoint_commit: "(see git log: checkpoint(S-007))"
+  - at: "20261116T222323Z"
+    scope: story
+    story: S-008
+    command: "npm test (46) + npm run e2e (11)"
+    passed: 57
+    failed: 0
+    eval_scores: { summary: "P-01 manifest + PNG icons pass; P-02 SW caches shell only, 0 Supabase URLs cached; J-5 install path ready (device check in qa-verify)" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222323Z-S-008.json"
+    checkpoint_commit: "(see git log: checkpoint(S-008))"
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan

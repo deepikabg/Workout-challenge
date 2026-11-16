@@ -59,6 +59,7 @@ function signInSheet() {
 addEventListener('hashchange', () => { render(); scrollTo(0, 0); });
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') auth.touch(); });
 startLive({ client, refresh });
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { /* app still works without it */ });
 
 render();
 auth.init().catch(() => false).then(render);
