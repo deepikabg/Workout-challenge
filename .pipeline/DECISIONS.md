@@ -38,3 +38,9 @@ Trigger: user answer
 Resolved: user corrected backfilled Nov 11 at-home yoga to 45 min — all 5 backfilled workouts qualify (5/30).
 Affects: Brainstorm-Brief · Eval-Spec (counting rule)     Decided by: human · approved: y
 Supersedes: —
+
+## D-007 · brainstorm · 2026-11-16 · status: accepted
+Decision: Under-minimum workouts are allowed and saved; their minutes count toward total-time stats but NOT the challenge. They render greyed out (calendar + log) as "not counted". A day counts if at least one workout that day meets its minimum; short sessions do NOT add up.
+Trigger: user answer
+Affects: Brainstorm-Brief · Eval-Spec (counting rule) · Prototype     Decided by: human · approved: y
+Supersedes: —
