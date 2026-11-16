@@ -1,0 +1,10 @@
+{
+ "at": "20261116T222352Z",
+ "scope": "story",
+ "story": "S-009",
+ "command": "npm test (48)",
+ "passed": 48,
+ "failed": 0,
+ "evals": "keep-alive + Pages workflow shape pass; live runs verified after merge to main (deploy-gate)",
+ "ship_gate": "BINDABLE"
+}

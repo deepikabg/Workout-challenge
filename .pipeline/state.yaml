@@ -178,8 +178,8 @@ build:
       batch: 5
       parallel: true
       github_issue: 9
-      failing_test_written: false
-      status: pending
+      failing_test_written: true
+      status: done
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
     - id: S-010
@@ -291,6 +291,17 @@ test_runs:
     ship_gate: BINDABLE
     report_path: ".pipeline/results/20261116T222323Z-S-008.json"
     checkpoint_commit: "(see git log: checkpoint(S-008))"
+  - at: "20261116T222352Z"
+    scope: story
+    story: S-009
+    command: "npm test (48)"
+    passed: 48
+    failed: 0
+    eval_scores: { summary: "keep-alive + Pages workflow shape pass; live runs verified after merge to main (deploy-gate)" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222352Z-S-009.json"
+    checkpoint_commit: "(see git log: checkpoint(S-009))"
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
