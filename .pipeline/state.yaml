@@ -74,9 +74,9 @@ build:
       batch: 1
       parallel: true
       github_issue: 1
-      failing_test_written: false
-      status: pending
-      budget: { max_iterations: 5, used: 0 }
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 2 }
       worker_context: fresh
     - id: S-002
       title: "Supabase project + schema"
@@ -201,7 +201,18 @@ build:
     - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: pending }
     - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
 
-test_runs: []
+test_runs:
+  - at: "20261116T214207Z"
+    scope: story
+    story: S-001
+    command: "npm test"
+    passed: 17
+    failed: 0
+    eval_scores: { C-01..C-15: pass }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T214207Z-S-001.json"
+    checkpoint_commit: "(this commit)"
 
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)

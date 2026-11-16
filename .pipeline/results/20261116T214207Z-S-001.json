@@ -1,0 +1,29 @@
+{
+ "at": "20261116T214207Z",
+ "scope": "story",
+ "story": "S-001",
+ "command": "npm test",
+ "passed": 17,
+ "failed": 0,
+ "tests": [
+  "C-01 seed on Nov 16 \u2192 25/38, 5 done",
+  "C-02 window edges: Nov 9 \u2192 45 left, Dec 23 \u2192 1 left, Dec 24 \u2192 ended with 0",
+  "C-03 minimums: YMCA 29 no / 30 yes; home 44 no / 45 yes; Other uses chosen location",
+  "C-04 two qualifying sessions on one day count once, minutes add",
+  "C-05 short sessions do not add up to a counted day",
+  "C-06 entries outside Nov 9 \u2013 Dec 23 are ignored",
+  "C-07 a workout at 23:30 Toronto stays on that Toronto date",
+  "C-08 days-left ticks at Toronto midnight, not UTC",
+  "C-09 short + qualifying on the same day \u2192 day counts, short entry still not qualifying",
+  "C-10 at 30 counted days \u2192 finished, to-go 0; never negative past 30",
+  "C-11 streaks: run ending today or yesterday; a greyed-only day breaks it",
+  "C-12 pace: needed = to-go / days-left, actual = done / elapsed days incl. today",
+  "C-13 quote is stable for a date and changes the next day",
+  "C-14 sign out after 48 h inactivity, not before",
+  "C-15 quotes: encouraging only \u2014 no peer pressure, guilt, or rest/stillness lines",
+  "by-type breakdown counts sessions and minutes",
+  "config window matches the challenge"
+ ],
+ "failures": [],
+ "ship_gate": "BINDABLE"
+}
