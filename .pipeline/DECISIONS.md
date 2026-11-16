@@ -13,7 +13,7 @@ Trigger: user answer
 Affects: Brainstorm-Brief     Decided by: human · approved: y
 Supersedes: —
 
-## D-003 · architecture · 2026-11-16 · status: proposed
+## D-003 · architecture · 2026-11-16 · status: superseded
 Decision: Static page (GitHub Pages) + Supabase table with RLS (public select, owner-only insert/update/delete via magic-link auth).
 Trigger: user asked for Supabase + own repo
 Affects: Architecture     Decided by: claude · approved: pending architecture-checkpoint
@@ -115,7 +115,7 @@ Supersedes: —
 ## D-019 · architecture · 2026-11-16 · status: accepted
 Decision: Add a weekly keep-alive so the free Supabase project never auto-pauses (friends would otherwise see an error). Proposed mechanism: scheduled GitHub Actions workflow doing one read-only anon SELECT; design confirmed at architecture-checkpoint.
 Trigger: Claude recommendation, user approved
-Affects: Architecture · Eval-Spec (add keep-alive check)     Decided by: human · approved: y
+Affects: Architecture (keep-alive check lives as a story acceptance test, not an Eval-Spec edit, to keep the approved triad intact)     Decided by: human · approved: y
 Supersedes: —
 
 ## D-020 · prototype · 2026-11-16 · status: accepted
@@ -123,3 +123,9 @@ Decision: TRIAD APPROVED — Brief + Eval-Spec + Prototype v4 (shas in state.yam
 Trigger: owner approval
 Affects: —     Decided by: human · approved: y
 Supersedes: —
+
+## D-021 · architecture · 2026-11-16 · status: accepted
+Decision: Vanilla ES modules, no build step; pure rules module tested with node --test; Supabase (ca-central-1) with RLS owner-UUID writes; email OTP (not magic link); client-generated UUIDs for idempotent inserts; SW caches shell only, never data. Alternatives rejected: claude artifact DB, React/Vite, Google Sheet, Edge Function API, magic link (see Architecture.md).
+Trigger: architecture-checkpoint
+Affects: Architecture     Decided by: claude · approved: proceeds autonomously per orchestrator; owner may object
+Supersedes: D-003 (refines)
