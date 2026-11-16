@@ -206,36 +206,36 @@ const SEED=[
   {id:5,date:"2026-11-15",type:"homeyoga",min:45}
 ];
 const QUOTES=[
-  ["The hardest part is putting your shoes on. You've done harder things than shoes.","playful"],
-  ["Small workouts, stacked, become a big story.","motivational"],
-  ["Breathe in for the body you have. Move for the one you're building.","mindful"],
-  ["Your couch will still be there in 45 minutes.","playful"],
-  ["Discipline is choosing what you want most over what you want now.","motivational"],
-  ["Arrive on the mat as you are. That's enough to begin.","mindful"],
-  ["You never regret the class. You only regret the skip.","motivational"],
-  ["Sweat now, brag to your friends later.","playful"],
-  ["Strength grows in the moments you think you can't go on.","mindful"],
-  ["Thirty is just one, thirty times.","motivational"],
-  ["The kettlebell believes in you. Mostly.","playful"],
-  ["Slow progress is still progress. Ask any tortoise.","playful"],
-  ["Be proud of showing up, then show up again tomorrow.","motivational"],
-  ["Stillness is a workout too. So is starting.","mindful"],
-  ["Future you is already saying thank you.","motivational"],
-  ["Motivation gets you started. Habit gets you to thirty.","motivational"],
-  ["Nobody at the Y is watching you. They're all thinking about their own plank.","playful"],
-  ["Notice how you feel after, not just before.","mindful"],
-  ["One good hour can change the whole day.","motivational"],
-  ["Rest is part of the plan. Quitting isn't.","motivational"],
-  ["Inhale confidence, exhale excuses.","mindful"],
-  ["Your playlist deserves an audience. Go give it one.","playful"],
-  ["Done is better than perfect, and it counts the same.","motivational"],
-  ["Let the hard days be short and the good days be many.","mindful"],
-  ["Gravity is undefeated, but you can still put up a fight.","playful"],
-  ["Every square on this calendar is a promise you kept.","motivational"],
-  ["Soft heart, strong core.","mindful"],
-  ["Winter is coming. So are you, to class.","playful"],
-  ["You don't have to feel ready. You just have to go.","motivational"],
-  ["Roll out the mat. The rest follows.","mindful"]
+  "You never regret the class. You only regret the skip.",
+  "Thirty is just one, thirty times. Go get today's one.",
+  "Small workouts, stacked up, become a big win.",
+  "The hardest part is getting out the door. You've got this.",
+  "Your couch will still be there after class. Go.",
+  "Future you is already saying thank you.",
+  "Show up today. That's how the calendar fills up.",
+  "Every square on this calendar is a promise you kept.",
+  "Motivation gets you started. Habit gets you to thirty.",
+  "Done is better than perfect, and it counts the same.",
+  "You don't have to feel ready. You just have to go.",
+  "Strong is built one class at a time.",
+  "Sweat now, brag to your friends later.",
+  "Be proud of showing up, then show up again.",
+  "One good hour can change the whole day.",
+  "The kettlebell believes in you.",
+  "Tired is temporary. Finished is forever.",
+  "Your friends are watching. Give them something to cheer for.",
+  "Make today a filled-in square.",
+  "Progress loves consistency more than intensity.",
+  "Winter is coming. So are you, to class.",
+  "You're closer to thirty than you were yesterday.",
+  "Gravity is undefeated, but you can still put up a fight.",
+  "Your playlist deserves an audience. Go give it one.",
+  "Momentum is a superpower. Keep yours going.",
+  "A short walk to the Y is the first rep.",
+  "Champions are just people who kept showing up.",
+  "The best workout is the one you actually do.",
+  "Do it for the streak.",
+  "You started this for a reason. Remember it, then lace up."
 ];
 
 /* ---------- date helpers (America/Toronto) ---------- */
@@ -336,8 +336,8 @@ function hero(c){
 }
 function quote(){
   const i=((dnum(torontoToday())%QUOTES.length)+QUOTES.length)%QUOTES.length;
-  const [q,tone]=QUOTES[i];
-  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon("sparkle")}</span><div><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><p>${q}</p><div class="tag">New one tomorrow · ${tone}</div></div></section>`;
+  const q=QUOTES[i];
+  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon("sparkle")}</span><div><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><p>${q}</p><div class="tag">New one tomorrow</div></div></section>`;
 }
 function calendar(c){
   let cells="";

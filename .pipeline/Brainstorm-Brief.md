@@ -42,7 +42,7 @@ Test instrument: founder-as-user prototype click-through: log a workout from the
 - [ ] Quick-log form: date (default today), type (icon buttons), duration (preset + custom) — freq: ~daily
 - [ ] 45-day calendar grid: counted days filled with type icon, greyed non-counted, today marked, future days empty — every visit
 - [ ] Stats: total minutes, current & longest streak, pace needed vs actual, breakdown by type, avg session length — every visit
-- [ ] Daily quote — mixed tone (motivational / playful / mindful), same quote for everyone that day — daily
+- [ ] Daily quote — encouraging, action-oriented (no mindfulness/rest framing — D-017), same quote for everyone that day — daily
 - [ ] History page: all workouts newest first; owner can edit/delete there (D-016) — on demand
 - [ ] Live updates: open pages refresh when the owner logs (D-015) — every log
 - [ ] Public read, owner-only write (Supabase RLS) — always

@@ -51,7 +51,7 @@ Trigger: Claude recommendation
 Affects: —     Decided by: human · approved: n/a
 Supersedes: —
 
-## D-009 · brainstorm · 2026-11-16 · status: accepted
+## D-009 · brainstorm · 2026-11-16 · status: superseded
 Decision: Daily quote = mixed tone (motivational, playful, mindful); one quote per calendar day, same for every viewer.
 Trigger: user answer (option d)
 Affects: Brainstorm-Brief · Prototype     Decided by: human · approved: y
@@ -99,3 +99,9 @@ Decision: Full workout list moves off the main page into a separate History page
 Trigger: user feedback on prototype v1
 Affects: Prototype · Eval-Spec (J-1, J-4)     Decided by: human · approved: y
 Supersedes: —
+
+## D-017 · prototype · 2026-11-16 · status: applied
+Decision: Daily quotes are encouraging and action-oriented only (some playful). No mindfulness, stillness or rest-framed lines — they undercut the challenge.
+Trigger: user feedback on prototype v2 ("Stillness is also a workout" defeats the purpose)
+Affects: Prototype · Brainstorm-Brief     Decided by: human · approved: y
+Supersedes: D-009
