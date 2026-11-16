@@ -21,9 +21,5 @@ create policy "workouts are public to read" on public.workouts
 -- Least privilege at the grant level too: anon can only select.
 revoke insert, update, delete, truncate on public.workouts from anon;
 
--- Live updates (D-015).
-do $$ begin
-  if not exists (select 1 from pg_publication_tables where pubname = 'supabase_realtime' and schemaname = 'public' and tablename = 'workouts') then
-    alter publication supabase_realtime add table public.workouts;
-  end if;
-end $$;
+-- Live updates (D-015). Run once on a fresh project.
+alter publication supabase_realtime add table public.workouts;
