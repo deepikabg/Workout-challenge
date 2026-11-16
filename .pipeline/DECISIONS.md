@@ -18,3 +18,10 @@ Decision: Static page (GitHub Pages) + Supabase table with RLS (public select, o
 Trigger: user asked for Supabase + own repo
 Affects: Architecture     Decided by: claude · approved: pending architecture-checkpoint
 Supersedes: —
+
+## D-004 · brainstorm · 2026-11-16 · status: accepted
+Decision: Ship as an installable PWA (web manifest + icons + service worker) so the owner can add it to the phone home screen and open it like an app.
+Trigger: user ask
+Rationale + alternatives: Native app weighed — app-store overhead not justified for a 45-day challenge; PWA gives home-screen launch from the same static page.
+Affects: Brainstorm-Brief · Architecture     Decided by: human · approved: y
+Supersedes: —
