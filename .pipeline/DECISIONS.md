@@ -25,3 +25,9 @@ Trigger: user ask
 Rationale + alternatives: Native app weighed — app-store overhead not justified for a 45-day challenge; PWA gives home-screen launch from the same static page.
 Affects: Brainstorm-Brief · Architecture     Decided by: human · approved: y
 Supersedes: —
+
+## D-005 · brainstorm · 2026-11-16 · status: accepted
+Decision: Progress counts DISTINCT workout days, not sessions. Multiple sessions on one day can all be logged (minutes and type stats include them) but the day counts once toward 30.
+Trigger: user answer
+Affects: Brainstorm-Brief · Eval-Spec (counting rule)     Decided by: human · approved: y
+Supersedes: —
