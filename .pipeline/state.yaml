@@ -1,0 +1,70 @@
+pipeline:
+  version: 1
+  project: workout-challenge
+  level: 3                      # trimmed — see D-001
+  classified_by: claude
+  build_engine: claude-code
+  created: "2026-11-16"
+
+gates:
+  brainstorm:            { status: in-progress, mode: gap-interview, artifact: "", artifact_sha: "", passed_at: "" }
+  market-scan:
+    status: skipped(D-001)
+    recon_done: false
+    wedge_verdict: n/a           # personal tool, no market
+  eval-spec:             { status: pending, mode: lite, artifact: "", artifact_sha: "", passed_at: "" }
+  prototype:
+    status: pending
+    artifact: ""
+    artifact_sha: ""
+    passed_at: ""
+    design_prefs: {}
+    validation: { assumption_class: "", method: "founder-as-user", verdict: "", decision: "" }
+  architecture-checkpoint: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
+  api-contract-definition: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
+  security-baseline:     { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
+  story-map:
+    status: pending
+    artifact: ""
+    artifact_sha: ""
+    passed_at: ""
+    traceability: ""
+    plan_approved_by: ""
+    github: { synced: false, project_url: "" }
+  deploy-gate:           { status: pending, report: "", staging_url: "", prod_approved_by: "", approved_at: "" }
+  qa-verify:
+    pre_handoff: { status: pending, target: "localhost", report: "", verdict: "", day0_checklist: "" }
+    staging:     { status: pending, report: "", verdict: "" }
+    prod:        { status: pending, report: "", verdict: "", monitoring_window_end: "" }
+
+triad_approval:
+  approved: false
+  approved_by: ""
+  at: ""
+  shas: { brief: "", eval_spec: "", prototype: "" }
+
+intake:
+  source_doc: "chat requirements 2026-11-16 (see Brainstorm-Brief.md once written)"
+  source_sha: ""
+  gap_list:
+    - Do two workouts on the same day count as 2?
+    - Minimum duration for a workout to count?
+    - Where/how will the owner log (phone, desktop)?
+    - Design prefs / voice
+    - Daily quote source
+  gaps_resolved: false
+
+build:
+  stories: []
+
+test_runs: []
+
+git:
+  remote: https://github.com/deepikabg/workout-challenge
+  checkpoint_branch: ccr-b35d4b70-ig1nan
+  push_checkpoints: true
+  create_remote_declined: false
+
+approvals: []
+parked: []
+decisions: ".pipeline/DECISIONS.md"
