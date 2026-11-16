@@ -7,7 +7,7 @@ pipeline:
   created: "2026-11-16"
 
 gates:
-  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "c8f7d36ebd7e", passed_at: "2026-11-16" }
+  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "4735eebcfdb4", passed_at: "2026-11-16" }
   market-scan:
     status: skipped(D-001)
     recon_done: false
@@ -16,7 +16,7 @@ gates:
   prototype:
     status: passed
     artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
-    artifact_sha: "d79252b72c99"
+    artifact_sha: "1c49bdce5c33"
     passed_at: "2026-11-16"
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"

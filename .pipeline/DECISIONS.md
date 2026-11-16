@@ -137,7 +137,7 @@ Affects: Eval-Spec (J-5, C-14) · Prototype copy · Security-Baseline     Decide
 Supersedes: —
 
 ## D-023 · prototype · 2026-11-16 · status: applied
-Decision: Daily quotes = inspiring lines about working out and healthy living. No peer pressure ("your friends are watching"), no guilt, no bragging, no rest/stillness lines. 30 new lines in prototype v5.
+Decision: Daily quotes = inspiring lines about working out, healthy living and determination (10 determination lines added, 40 total). No peer pressure ("your friends are watching"), no guilt, no bragging, no rest/stillness lines. 30 new lines in prototype v5.
 Trigger: user feedback ("Yuck I don't want peer pressure like quotes")
 Affects: Prototype · Brainstorm-Brief · Eval-Spec (C-15)     Decided by: human · approved: y
 Supersedes: D-017
@@ -152,4 +152,10 @@ Supersedes: —
 Decision: Security baseline passed with accepted risks R-1 (client-side 48 h timeout), R-2 (public repo), R-3 (CDN-loaded supabase-js, pinned). No service_role key anywhere; RLS default-deny with owner-UUID writes; sign-ups disabled.
 Trigger: security-baseline
 Affects: Security-Baseline     Decided by: claude · approved: owner may object
+Supersedes: —
+
+## D-026 · build · 2026-11-16 · status: accepted
+Decision: Vendor a pinned supabase-js browser bundle into the repo (from npm) instead of loading it from jsDelivr. Removes CDN runtime dependency (closes R-3) and works with this build environment, where jsDelivr and *.supabase.co are not reachable but the npm registry is. Supabase admin work (create project, migrations, RLS tests) goes through the Supabase connector.
+Trigger: connectivity check 2026-11-16
+Affects: Architecture (code layout) · Security-Baseline (R-3 closed)     Decided by: claude · approved: owner may object
 Supersedes: —
