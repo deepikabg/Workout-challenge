@@ -347,7 +347,7 @@ function hero(c){
 function quote(){
   const i=((dnum(torontoToday())%QUOTES.length)+QUOTES.length)%QUOTES.length;
   const q=QUOTES[i];
-  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon("sparkle")}</span><div><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><p>${q}</p><div class="tag">New one tomorrow</div></div></section>`;
+  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon("sparkle")}</span><div><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><p>${q}</p></div></section>`;
 }
 function calendar(c){
   let cells="";

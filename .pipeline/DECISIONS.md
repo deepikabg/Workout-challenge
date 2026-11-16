@@ -184,3 +184,9 @@ Decision: Run S-006's database half (002 owner policies + 003 seed) now, ahead o
 Trigger: connector write timeouts; sequencing convenience
 Affects: Story-Map (S-006 split execution, no scope change)     Decided by: claude · approved: owner may object
 Supersedes: —
+
+## D-031 · prototype · 2026-11-16 · status: applied
+Decision: Remove the "New one tomorrow" line under the daily quote (app + prototype). Copy-only change.
+Trigger: owner ask
+Affects: Prototype (copy)     Decided by: human · approved: y — owner's request taken as triad re-approval for this copy change
+Supersedes: —

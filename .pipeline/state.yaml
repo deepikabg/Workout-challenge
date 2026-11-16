@@ -16,7 +16,7 @@ gates:
   prototype:
     status: passed
     artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
-    artifact_sha: "9a60f4770a70"
+    artifact_sha: "4f73a2fd07ff"
     passed_at: "2026-11-16"
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
@@ -50,7 +50,7 @@ triad_approval:
   approved: true
   approved_by: owner (chat)
   at: "2026-11-16"   # re-approved via owner decision D-029 (password sign-in, prototype v7)
-  shas: { brief: "f5187568e5a4", eval_spec: "b91ebb36bae8", prototype: "9a60f4770a70" }
+  shas: { brief: "f5187568e5a4", eval_spec: "b91ebb36bae8", prototype: "4f73a2fd07ff" }
 
 intake:
   source_doc: "chat requirements 2026-11-16 (see Brainstorm-Brief.md once written)"

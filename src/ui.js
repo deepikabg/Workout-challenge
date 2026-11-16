@@ -35,7 +35,7 @@ export function hero(c) {
 }
 
 export function quote(today) {
-  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon('sparkle')}</span><div><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><p>${esc(quoteFor(today))}</p><div class="tag">New one tomorrow</div></div></section>`;
+  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon('sparkle')}</span><div><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><p>${esc(quoteFor(today))}</p></div></section>`;
 }
 
 export function calendar(c, today) {
