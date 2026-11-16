@@ -1,0 +1,7 @@
+{ "today": "2026-11-20", "expect": { "done": 2, "sessions": 5, "totalMin": 225 },
+  "rows": [
+    { "id": "d1", "day": "2026-11-18", "type": "yoga", "location": "ymca", "minutes": 60 },
+    { "id": "d2", "day": "2026-11-18", "type": "gym", "location": "ymca", "minutes": 45 },
+    { "id": "d3", "day": "2026-11-18", "type": "kettle", "location": "ymca", "minutes": 30 },
+    { "id": "d4", "day": "2026-11-19", "type": "homeyoga", "location": "home", "minutes": 45 },
+    { "id": "d5", "day": "2026-11-19", "type": "homeyoga", "location": "home", "minutes": 45 } ] }

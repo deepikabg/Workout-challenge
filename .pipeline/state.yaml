@@ -100,8 +100,8 @@ build:
       batch: 2
       parallel: true
       github_issue: 3
-      failing_test_written: false
-      status: pending
+      failing_test_written: true
+      status: done
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
     - id: S-004
@@ -225,6 +225,17 @@ test_runs:
     report_path: ".pipeline/results/20261116T215559Z-S-002.json"
     checkpoint_commit: "(this commit)"
 
+  - at: "20261116T221114Z"
+    scope: story
+    story: S-003
+    command: "npm test (TZ=UTC and TZ=Pacific/Kiritimati) + node scripts/secret-scan.mjs"
+    passed: 24
+    failed: 0
+    eval_scores: { summary: "G-05 clean; C-04/05/06/07/09 fixtures pass" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T221114Z-S-003.json"
+    checkpoint_commit: "(see git log: checkpoint(S-003))"
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
