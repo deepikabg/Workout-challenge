@@ -49,6 +49,8 @@ Clock = 2026-11-16 12:00 America/Toronto unless stated. Seed = the 5 backfilled 
 - **C-10** 30th counted day → celebration state; to-go shows 0, never negative; 31st day still shows ≥30 done.
 - **C-11** Streaks: current streak counts consecutive counted days ending today or yesterday; a greyed-only day breaks it.
 - **C-12** Pace: needed = to-go ÷ days-left (25/38 = 0.66/day); actual = done ÷ elapsed days incl. today (5/8).
+- **C-14** Session inactivity: owner last active T; reopen at T+47h59m → still signed in (and last-active refreshed); reopen at T+48h01m → signed out, header shows Sign in (D-022).
+- **C-15** Quote list contains no peer-pressure, guilt, or rest/stillness lines (manual copy review, D-023).
 - **C-13** Quote for a given Toronto date is identical across reloads and viewers; changes on the next date.
 
 ## Guardrails (zero tolerance)
@@ -65,7 +67,7 @@ Clock = 2026-11-16 12:00 America/Toronto unless stated. Seed = the 5 backfilled 
 | J-2 | Owner logs a workout from phone | open app → sign in once (email code) → tap type → confirm duration → save | new entry appears; headline updates (e.g. 25/38 → 24/38) within 2 s; ≤3 taps after sign-in | P0 |
 | J-3 | Owner logs a short workout | log Home yoga 20 min | entry saved, greyed on calendar + log, count unchanged, total minutes +20 | P0 |
 | J-4 | Owner fixes a mistake | History page → tap entry → edit duration or delete | count/calendar/stats recompute correctly | P0 |
-| J-5 | Install to home screen | browser "Add to Home Screen" | icon appears; opens standalone; shows current (not cached-stale) data; owner stays signed in | P0 |
+| J-5 | Install to home screen | browser "Add to Home Screen" | icon appears; opens standalone; shows current (not cached-stale) data; owner stays signed in across opens within 48 h | P0 |
 | J-6 | Friend can't write | anon user attempts write via devtools/API | rejected (G-01..G-02) | P0 |
 | J-8 | Live update | friend has the page open; owner logs a workout on the phone | friend's headline/calendar update within 5 s without reload | P0 |
 | J-7 | Challenge complete | 30th counted day logged | celebration shows for owner and friends | P1 |

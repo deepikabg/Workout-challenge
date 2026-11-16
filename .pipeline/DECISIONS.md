@@ -100,7 +100,7 @@ Trigger: user feedback on prototype v1
 Affects: Prototype · Eval-Spec (J-1, J-4)     Decided by: human · approved: y
 Supersedes: —
 
-## D-017 · prototype · 2026-11-16 · status: applied
+## D-017 · prototype · 2026-11-16 · status: superseded
 Decision: Daily quotes are encouraging and action-oriented only (some playful). No mindfulness, stillness or rest-framed lines — they undercut the challenge.
 Trigger: user feedback on prototype v2 ("Stillness is also a workout" defeats the purpose)
 Affects: Prototype · Brainstorm-Brief     Decided by: human · approved: y
@@ -109,7 +109,7 @@ Supersedes: D-009
 ## D-018 · security · 2026-11-16 · status: accepted
 Decision: Owner sign-in email provided by the user in chat; it is NOT written to this (public) repo. Write access is tied to the owner's Supabase auth user id (UUID) in RLS, not an email string in code. New sign-ups are disabled once the owner account exists, so a stranger cannot create an account to probe with (backs G-03/G-04).
 Trigger: user provided email; repo is public (D-013)
-Affects: Architecture · Security-Baseline     Decided by: claude · approved: pending security-baseline
+Affects: Architecture · Security-Baseline     Decided by: claude · approved: y (security-baseline passed)
 Supersedes: —
 
 ## D-019 · architecture · 2026-11-16 · status: accepted
@@ -129,3 +129,27 @@ Decision: Vanilla ES modules, no build step; pure rules module tested with node 
 Trigger: architecture-checkpoint
 Affects: Architecture     Decided by: claude · approved: proceeds autonomously per orchestrator; owner may object
 Supersedes: D-003 (refines)
+
+## D-022 · security · 2026-11-16 · status: accepted
+Decision: Owner stays signed in until 48 h of inactivity. Client stores last-active time (updated on open/visibility/interaction); on open, if >48 h since last active → signOut(). Supabase refresh tokens otherwise keep the session (server-side inactivity timeouts are a paid-plan feature, so this is enforced client-side).
+Trigger: user ask
+Affects: Eval-Spec (J-5, C-14) · Prototype copy · Security-Baseline     Decided by: human · approved: y
+Supersedes: —
+
+## D-023 · prototype · 2026-11-16 · status: applied
+Decision: Daily quotes = inspiring lines about working out and healthy living. No peer pressure ("your friends are watching"), no guilt, no bragging, no rest/stillness lines. 30 new lines in prototype v5.
+Trigger: user feedback ("Yuck I don't want peer pressure like quotes")
+Affects: Prototype · Brainstorm-Brief · Eval-Spec (C-15)     Decided by: human · approved: y
+Supersedes: D-017
+
+## D-024 · prototype · 2026-11-16 · status: accepted
+Decision: Triad invalidated by D-022/D-023 edits (Brief, Eval-Spec, Prototype re-hashed) → owner re-approval required before story-map. Architecture/contract unaffected.
+Trigger: hash mismatch rule
+Affects: triad_approval     Decided by: claude · approved: pending owner
+Supersedes: —
+
+## D-025 · security · 2026-11-16 · status: accepted
+Decision: Security baseline passed with accepted risks R-1 (client-side 48 h timeout), R-2 (public repo), R-3 (CDN-loaded supabase-js, pinned). No service_role key anywhere; RLS default-deny with owner-UUID writes; sign-ups disabled.
+Trigger: security-baseline
+Affects: Security-Baseline     Decided by: claude · approved: owner may object
+Supersedes: —

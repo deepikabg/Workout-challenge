@@ -206,36 +206,36 @@ const SEED=[
   {id:5,date:"2026-11-15",type:"homeyoga",min:45}
 ];
 const QUOTES=[
-  "You never regret the class. You only regret the skip.",
-  "Thirty is just one, thirty times. Go get today's one.",
-  "Small workouts, stacked up, become a big win.",
-  "The hardest part is getting out the door. You've got this.",
-  "Your couch will still be there after class. Go.",
-  "Future you is already saying thank you.",
-  "Show up today. That's how the calendar fills up.",
-  "Every square on this calendar is a promise you kept.",
-  "Motivation gets you started. Habit gets you to thirty.",
-  "Done is better than perfect, and it counts the same.",
-  "You don't have to feel ready. You just have to go.",
-  "Strong is built one class at a time.",
-  "Sweat now, brag to your friends later.",
-  "Be proud of showing up, then show up again.",
-  "One good hour can change the whole day.",
-  "The kettlebell believes in you.",
-  "Tired is temporary. Finished is forever.",
-  "Your friends are watching. Give them something to cheer for.",
-  "Make today a filled-in square.",
-  "Progress loves consistency more than intensity.",
-  "Winter is coming. So are you, to class.",
-  "You're closer to thirty than you were yesterday.",
-  "Gravity is undefeated, but you can still put up a fight.",
-  "Your playlist deserves an audience. Go give it one.",
-  "Momentum is a superpower. Keep yours going.",
-  "A short walk to the Y is the first rep.",
-  "Champions are just people who kept showing up.",
-  "The best workout is the one you actually do.",
-  "Do it for the streak.",
-  "You started this for a reason. Remember it, then lace up."
+  "Take care of your body. It's the only place you have to live.",
+  "Every workout is a gift to your future self.",
+  "Strong body, clear mind, good day.",
+  "Movement is medicine, and today's dose is waiting.",
+  "You get a little stronger with every class.",
+  "Healthy is a habit you build one day at a time.",
+  "Exercise is a celebration of what your body can do.",
+  "Energy grows when you use it.",
+  "Every step forward counts.",
+  "Your body can do amazing things. Let it show you today.",
+  "Feeling good starts with moving.",
+  "Small steps every day add up to big changes.",
+  "A healthy body is a happy home.",
+  "Sweat is just your body cheering you on.",
+  "Fitness isn't a destination. It's a way of living.",
+  "The more you move, the better you feel.",
+  "You're building a stronger, healthier you.",
+  "Make your health a priority today.",
+  "Good things happen when you show up for yourself.",
+  "Your heart loves it when you move.",
+  "Every rep counts, and so do you.",
+  "Invest in your health. It pays you back every day.",
+  "Be a little stronger than yesterday.",
+  "Progress, not perfection.",
+  "Today is a great day to feel strong.",
+  "Healthy habits make happy days.",
+  "Your future self is cheering for you.",
+  "Move with joy.",
+  "Strength is built, one workout at a time.",
+  "You're becoming your healthiest self, one day at a time."
 ];
 
 /* ---------- date helpers (America/Toronto) ---------- */
@@ -306,7 +306,7 @@ function render(){
     h+=calendar(c);
     h+=stats(c);
     h+=`<a class="card histlink" href="#history"><span><strong>Workout history</strong><span class="muted" style="display:block;font-size:13px">${c.sessions} logged · ${c.totalMin} min${signedIn?" · edit or delete here":""}</span></span><span aria-hidden="true" style="font-size:20px">→</span></a>`;
-    if(signedIn) h+=`<div class="card tip">${bubble("sparkle")}<div><strong>Keep it on your home screen.</strong> In Safari tap Share, then <em>Add to Home Screen</em>. It opens like an app and remembers you're signed in.</div></div>`;
+    if(signedIn) h+=`<div class="card tip">${bubble("sparkle")}<div><strong>Keep it on your home screen.</strong> In Safari tap Share, then <em>Add to Home Screen</em>. It opens like an app and keeps you signed in. If you don't open it for 2 days, you'll sign in again with a new code.</div></div>`;
   }
   h+=`<p class="muted" style="font-size:12px;text-align:center;margin:8px 0 0">A day counts when one workout hits 30 min at the YMCA or 45 min at home.<br>Updates live as Dee logs.</p>`;
   app.innerHTML=h;
@@ -401,7 +401,7 @@ function signInSheet(){
    <p class="muted" style="font-size:13px;margin:8px 0 14px">Preview only: use <strong class="num">123456</strong>.</p><p class="note warn" id="cerr" hidden>That code needs 6 digits. In this preview, use 123456.</p>
    <button class="cta" id="verify">Sign in</button></div>`,()=>{
     $("#send").onclick=()=>{$("#step1").hidden=true;$("#step2").hidden=false;$("#c1").focus()};
-    $("#verify").onclick=()=>{if($("#c1").value.replace(/\D/g,"").length<6){$("#cerr").hidden=false;return}signedIn=true;closeSheet();render();toast("Signed in. You'll stay signed in on this phone.")};
+    $("#verify").onclick=()=>{if($("#c1").value.replace(/\D/g,"").length<6){$("#cerr").hidden=false;return}signedIn=true;closeSheet();render();toast("Signed in. You'll stay signed in unless you're away for 2 days.")};
   });
 }
 

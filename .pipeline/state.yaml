@@ -7,16 +7,16 @@ pipeline:
   created: "2026-11-16"
 
 gates:
-  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "41cbbe4891a9", passed_at: "2026-11-16" }
+  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "c8f7d36ebd7e", passed_at: "2026-11-16" }
   market-scan:
     status: skipped(D-001)
     recon_done: false
     wedge_verdict: n/a           # personal tool, no market
-  eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "35efc2466048", passed_at: "2026-11-16" }
+  eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "922ee203af34", passed_at: "2026-11-16" }
   prototype:
     status: passed
     artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
-    artifact_sha: "d419977d275a"
+    artifact_sha: "d79252b72c99"
     passed_at: "2026-11-16"
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
@@ -31,7 +31,7 @@ gates:
     validation: { assumption_class: "usable", method: "founder-as-user cold-drive on phone", verdict: "inconclusive", evidence: "owner drove sign-in + logging; friction found and fixed (demo code); tap count not measured — re-check in qa-verify J-2", decision: "proceed" }
   architecture-checkpoint: { status: passed, artifact: ".pipeline/Architecture.md", artifact_sha: "bc45e8943a37", passed_at: "2026-11-16" }
   api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "0dcb558cad70", passed_at: "2026-11-16" }
-  security-baseline:     { status: in-progress, artifact: "", artifact_sha: "", passed_at: "" }
+  security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "8932d2d96a72", passed_at: "2026-11-16" }
   story-map:
     status: pending
     artifact: ""
@@ -47,7 +47,7 @@ gates:
     prod:        { status: pending, report: "", verdict: "", monitoring_window_end: "" }
 
 triad_approval:
-  approved: true
+  approved: false   # invalidated by D-022/D-023 (D-024); previously approved 2026-11-16
   approved_by: owner (chat)
   at: "2026-11-16"
   shas: { brief: "41cbbe4891a9", eval_spec: "35efc2466048", prototype: "d419977d275a" }
