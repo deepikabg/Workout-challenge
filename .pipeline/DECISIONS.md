@@ -117,3 +117,9 @@ Decision: Add a weekly keep-alive so the free Supabase project never auto-pauses
 Trigger: Claude recommendation, user approved
 Affects: Architecture · Eval-Spec (add keep-alive check)     Decided by: human · approved: y
 Supersedes: —
+
+## D-020 · prototype · 2026-11-16 · status: accepted
+Decision: TRIAD APPROVED — Brief + Eval-Spec + Prototype v4 (shas in state.yaml). Assumption verdict: inconclusive (logging tap-count not measured); decision: proceed. J-2 in qa-verify pre-handoff re-tests logging friction on the real build.
+Trigger: owner approval
+Affects: —     Decided by: human · approved: y
+Supersedes: —

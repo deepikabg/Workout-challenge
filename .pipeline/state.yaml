@@ -14,10 +14,10 @@ gates:
     wedge_verdict: n/a           # personal tool, no market
   eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "35efc2466048", passed_at: "2026-11-16" }
   prototype:
-    status: in-review            # awaiting founder cold-drive + triad approval
+    status: passed
     artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
     artifact_sha: "d419977d275a"
-    passed_at: ""
+    passed_at: "2026-11-16"
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
       adjectives: [cute, encouraging]
@@ -28,8 +28,8 @@ gates:
       workout_icons: "custom illustrations in teal/coral palette (D-011)"
       title: "Dee's workout challenge"
       mode: "dark + light, follows system"
-    validation: { assumption_class: "usable", method: "founder-as-user cold-drive on phone", verdict: "", decision: "" }
-  architecture-checkpoint: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
+    validation: { assumption_class: "usable", method: "founder-as-user cold-drive on phone", verdict: "inconclusive", evidence: "owner drove sign-in + logging; friction found and fixed (demo code); tap count not measured — re-check in qa-verify J-2", decision: "proceed" }
+  architecture-checkpoint: { status: in-progress, artifact: "", artifact_sha: "", passed_at: "" }
   api-contract-definition: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
   security-baseline:     { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
   story-map:
@@ -47,10 +47,10 @@ gates:
     prod:        { status: pending, report: "", verdict: "", monitoring_window_end: "" }
 
 triad_approval:
-  approved: false
-  approved_by: ""
-  at: ""
-  shas: { brief: "", eval_spec: "", prototype: "" }
+  approved: true
+  approved_by: owner (chat)
+  at: "2026-11-16"
+  shas: { brief: "41cbbe4891a9", eval_spec: "35efc2466048", prototype: "d419977d275a" }
 
 intake:
   source_doc: "chat requirements 2026-11-16 (see Brainstorm-Brief.md once written)"
