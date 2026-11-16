@@ -63,8 +63,14 @@ Trigger: user statement
 Affects: Brainstorm-Brief (viable class N/A)     Decided by: human · approved: y
 Supersedes: —
 
-## D-011 · prototype · 2026-11-16 · status: proposed
-Decision: Use the owner's Figma "Power Moves Design System" as the base (tokens, type, components, Lucide stroke icons). Pending: how to reconcile its sleek dark-SaaS look with the requested "cute, encouraging" feel.
-Trigger: user ask
-Affects: Prototype     Decided by: human (base) · approved: pending style ruling
+## D-011 · prototype · 2026-11-16 · status: accepted
+Decision: Use the owner's Figma "Power Moves Design System" as the base (colour tokens, Inter + JetBrains Mono type, component shapes). Workout-type icons are CUSTOM ILLUSTRATIONS drawn in the Power Moves teal/coral palette (deliberate departure from Lucide stroke-only rule, scoped to workout-type icons; UI chrome icons stay Lucide-style stroke). Softer radii + friendly copy for "cute, encouraging".
+Trigger: user ask + ruling (custom drawn, matched to colours)
+Affects: Prototype     Decided by: human · approved: y
+Supersedes: —
+
+## D-012 · prototype · 2026-11-16 · status: accepted
+Decision: Page title "Dee's workout challenge" (owner's name visible to friends). Workout list per Brief + "Other" (choose YMCA/home) by default.
+Trigger: user answer (title); default (type list — not objected)
+Affects: Prototype     Decided by: human · approved: y (title), default (types)
 Supersedes: —
