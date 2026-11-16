@@ -33,7 +33,7 @@ Scale: public-facing static site + auth, minimal PII. Not AI-native (dimension 6
 None in scope: non-commercial personal tool, one user's own data, no payments, no health records beyond self-reported workout durations made public by the owner's choice. Retention: delete the Supabase project after the challenge if desired (owner action).
 
 ## 5. Dependencies
-- Runtime: `@supabase/supabase-js` v2 only, loaded from jsDelivr as an ESM bundle **pinned to an exact version** with a Subresource Integrity hash where the CDN supports it; checked against known CVEs at deploy-gate.
+- Runtime: `@supabase/supabase-js` v2 only, **vendored** into `vendor/` from npm at an exact version ≥2 weeks old (D-026); `npm audit` on that version at deploy-gate.
 - Dev: none (tests use `node --test`, zero npm deps). Fonts: Google Fonts CSS.
 - Update strategy: pin for the 45-day life; bump only for a security advisory.
 
@@ -46,4 +46,4 @@ G-01 anon insert rejected · G-02 anon update/delete rejected · G-03 non-owner 
 ## Accepted risks
 - R-1: Client-side inactivity timeout (see §3).
 - R-2: Public repo exposes code + project URL (D-013); mitigated by RLS default-deny.
-- R-3: Third-party CDN for supabase-js; mitigated by version pin (+ SRI where available).
+- ~~R-3: CDN-loaded supabase-js~~ — closed by D-026 (vendored). Google Fonts CSS remains a third-party load (styling only).

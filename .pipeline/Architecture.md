@@ -11,7 +11,7 @@ Depth: standard internal tool (single owner, ~10 readers, 45-day life, $0). Not 
 ## Components
 ```
  Phone (owner, PWA)        Friends' browsers
-        │  supabase-js (ESM, pinned)  │
+        │  supabase-js (vendored, pinned)  │
         ▼                             ▼
  GitHub Pages ── static: index.html, app.js, rules.js, sw.js, manifest, icons
         │
@@ -27,6 +27,7 @@ Depth: standard internal tool (single owner, ~10 readers, 45-day life, $0). Not 
 | File | Role |
 |---|---|
 | `src/rules.js` | **Pure** functions: qualifies, compute (count, days-left, streaks, pace, by-type), Toronto date helpers, quote-of-day. All C-* tests target this. |
+| `vendor/supabase.js` | supabase-js browser bundle, exact version, copied from npm (D-026). |
 | `src/config.js` | Challenge constants, workout types, Supabase URL + anon key (public). |
 | `src/data.js` | Supabase calls: list, insert, update, delete, subscribe; localStorage last-known cache. |
 | `src/auth.js` | OTP request/verify, session, sign-out. |

@@ -29,9 +29,9 @@ gates:
       title: "Dee's workout challenge"
       mode: "dark + light, follows system"
     validation: { assumption_class: "usable", method: "founder-as-user cold-drive on phone", verdict: "inconclusive", evidence: "owner drove sign-in + logging; friction found and fixed (demo code); tap count not measured — re-check in qa-verify J-2", decision: "proceed" }
-  architecture-checkpoint: { status: passed, artifact: ".pipeline/Architecture.md", artifact_sha: "bc45e8943a37", passed_at: "2026-11-16" }
+  architecture-checkpoint: { status: passed, artifact: ".pipeline/Architecture.md", artifact_sha: "45ec69963126", passed_at: "2026-11-16" }
   api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "0dcb558cad70", passed_at: "2026-11-16" }
-  security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "8932d2d96a72", passed_at: "2026-11-16" }
+  security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "77e499cf0611", passed_at: "2026-11-16" }
   story-map:
     status: in-progress
     artifact: ""

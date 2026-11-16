@@ -154,7 +154,7 @@ Trigger: security-baseline
 Affects: Security-Baseline     Decided by: claude · approved: owner may object
 Supersedes: —
 
-## D-026 · build · 2026-11-16 · status: accepted
+## D-026 · build · 2026-11-16 · status: applied
 Decision: Vendor a pinned supabase-js browser bundle into the repo (from npm) instead of loading it from jsDelivr. Removes CDN runtime dependency (closes R-3) and works with this build environment, where jsDelivr and *.supabase.co are not reachable but the npm registry is. Supabase admin work (create project, migrations, RLS tests) goes through the Supabase connector.
 Trigger: connectivity check 2026-11-16
 Affects: Architecture (code layout) · Security-Baseline (R-3 closed)     Decided by: claude · approved: owner may object
