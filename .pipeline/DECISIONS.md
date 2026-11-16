@@ -31,3 +31,10 @@ Decision: Progress counts DISTINCT workout days, not sessions. Multiple sessions
 Trigger: user answer
 Affects: Brainstorm-Brief · Eval-Spec (counting rule)     Decided by: human · approved: y
 Supersedes: —
+
+## D-006 · brainstorm · 2026-11-16 · status: accepted
+Decision: Minimum duration to count — 30 min for a class / at the YMCA (incl. solo gym at the Y); 45 min for an at-home workout.
+Trigger: user answer
+Open issue: backfilled Nov 11 at-home yoga is 30 min (< 45) — conflicts with the user's stated 5/30 total. Awaiting user ruling.
+Affects: Brainstorm-Brief · Eval-Spec (counting rule)     Decided by: human · approved: y
+Supersedes: —
