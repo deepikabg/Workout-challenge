@@ -40,9 +40,9 @@ gates:
     traceability: complete
     plan_approved_by: "owner (chat) 2026-11-16"
     github: { synced: true, project_url: "issues #1-#10 (labels batch-N); Projects board unavailable in this environment" }
-  deploy-gate:           { status: pending, report: "", staging_url: "", prod_approved_by: "", approved_at: "" }
+  deploy-gate:           { status: awaiting-prod-approval, report: ".pipeline/Deploy-Gate.md", staging_url: "n/a (no staging; localhost pre-handoff)", prod_approved_by: "", approved_at: "" }
   qa-verify:
-    pre_handoff: { status: pending, target: "localhost", report: "", verdict: "", day0_checklist: "" }
+    pre_handoff: { status: passed, target: "localhost (stubbed Supabase) + live API checks in Actions", report: ".pipeline/Deploy-Gate.md", verdict: "green", day0_checklist: "pass" }
     staging:     { status: pending, report: "", verdict: "" }
     prod:        { status: pending, report: "", verdict: "", monitoring_window_end: "" }
 
