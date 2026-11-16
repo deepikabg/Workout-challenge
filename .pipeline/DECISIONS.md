@@ -178,3 +178,9 @@ Trigger: Supabase free plan requires custom SMTP before email templates can be e
 Rationale + alternatives: (b) Gmail SMTP + code — 10 min setup, Gmail becomes sender; (c) default magic link — opens Safari not the PWA. Rejected.
 Affects: Brainstorm-Brief · Eval-Spec (J-2, taxonomy row) · Prototype (sign-in sheet v7) · Architecture · Contract · Security-Baseline · Story-Map (S-005, H-2)     Decided by: human · approved: y — owner's choice is taken as triad re-approval for this change
 Supersedes: OTP parts of D-021, D-018 (owner identity now by new uid)
+
+## D-030 · build · 2026-11-16 · status: accepted
+Decision: Run S-006's database half (002 owner policies + 003 seed) now, ahead of its batch, because the owner is already in the dashboard and connector writes stall on a confirmation the owner can't see. S-006's UI half stays in batch 4. Owner-run SQL Editor is the path for all DB writes (connector reads still used for verification).
+Trigger: connector write timeouts; sequencing convenience
+Affects: Story-Map (S-006 split execution, no scope change)     Decided by: claude · approved: owner may object
+Supersedes: —
