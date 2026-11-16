@@ -87,9 +87,9 @@ build:
       batch: 1
       parallel: true
       github_issue: 2
-      failing_test_written: false
-      status: pending
-      budget: { max_iterations: 5, used: 0 }
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 3 }
       worker_context: fresh
     - id: S-003
       title: "CI + secret scan + dirty fixtures"
@@ -196,7 +196,7 @@ build:
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
   human_tasks:
-    - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: pending }
+    - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: done, owner_uuid: "3f60de94-9de0-46a7-b967-c759d4d20091" }
     - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: pending }
     - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: pending }
     - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
@@ -212,6 +212,17 @@ test_runs:
     guardrail_violations: 0
     ship_gate: BINDABLE
     report_path: ".pipeline/results/20261116T214207Z-S-001.json"
+    checkpoint_commit: "2528fe8"
+  - at: "20261116T215559Z"
+    scope: story
+    story: S-002
+    command: "execute_sql read-only structural checks (+ owner-run tests/sql/guardrails.sql)"
+    passed: 9
+    failed: 0
+    eval_scores: { G-01: "structural pass (anon INSERT privilege false)", G-02: "structural pass (no UPDATE/DELETE privilege)", C-06: "check constraint present" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T215559Z-S-002.json"
     checkpoint_commit: "(this commit)"
 
 git:
