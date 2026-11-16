@@ -61,12 +61,13 @@ Clock = 2026-11-16 12:00 America/Toronto unless stated. Seed = the 5 backfilled 
 ## Critical User Journeys (qa-verify script)
 | # | Journey | Steps | Binary pass criterion | Priority |
 |---|---|---|---|---|
-| J-1 | Friend views progress | open public URL in a fresh browser, no login | headline, calendar (5 filled days with icons), stats, today's quote, and log all render; no add/edit controls visible | P0 |
+| J-1 | Friend views progress | open public URL in a fresh browser, no login | headline, calendar (5 filled days with icons), stats, today's quote render; History page lists all workouts; no add/edit controls visible | P0 |
 | J-2 | Owner logs a workout from phone | open app → sign in once (email code) → tap type → confirm duration → save | new entry appears; headline updates (e.g. 25/38 → 24/38) within 2 s; ≤3 taps after sign-in | P0 |
 | J-3 | Owner logs a short workout | log Home yoga 20 min | entry saved, greyed on calendar + log, count unchanged, total minutes +20 | P0 |
-| J-4 | Owner fixes a mistake | edit duration or delete an entry | count/calendar/stats recompute correctly | P0 |
+| J-4 | Owner fixes a mistake | History page → tap entry → edit duration or delete | count/calendar/stats recompute correctly | P0 |
 | J-5 | Install to home screen | browser "Add to Home Screen" | icon appears; opens standalone; shows current (not cached-stale) data; owner stays signed in | P0 |
 | J-6 | Friend can't write | anon user attempts write via devtools/API | rejected (G-01..G-02) | P0 |
+| J-8 | Live update | friend has the page open; owner logs a workout on the phone | friend's headline/calendar update within 5 s without reload | P0 |
 | J-7 | Challenge complete | 30th counted day logged | celebration shows for owner and friends | P1 |
 
 ## PWA

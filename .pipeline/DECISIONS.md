@@ -87,3 +87,15 @@ Decision: Style = Power Moves with a cute layer (tokens, Inter/JetBrains Mono, c
 Trigger: user answer
 Affects: Prototype     Decided by: human · approved: y
 Supersedes: D-011 (style detail)
+
+## D-015 · prototype · 2026-11-16 · status: accepted
+Decision: Data is always live from Supabase: friends' open pages update in real time (Supabase Realtime subscription) when the owner logs. Prototype shows mock data only; no prototype/state-switcher controls in the UI.
+Trigger: user feedback on prototype v1
+Affects: Prototype · Eval-Spec (J-8 added) · Architecture     Decided by: human · approved: y
+Supersedes: —
+
+## D-016 · prototype · 2026-11-16 · status: accepted
+Decision: Full workout list moves off the main page into a separate History page (#history); main page links to it. Owner edits/deletes from History. Owner sign-in is a small "Dee? Sign in" link in the header.
+Trigger: user feedback on prototype v1
+Affects: Prototype · Eval-Spec (J-1, J-4)     Decided by: human · approved: y
+Supersedes: —

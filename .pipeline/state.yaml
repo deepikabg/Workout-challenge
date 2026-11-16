@@ -12,11 +12,11 @@ gates:
     status: skipped(D-001)
     recon_done: false
     wedge_verdict: n/a           # personal tool, no market
-  eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "c0d5c482d8e7", passed_at: "2026-11-16" }
+  eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "35efc2466048", passed_at: "2026-11-16" }
   prototype:
     status: in-review            # awaiting founder cold-drive + triad approval
     artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
-    artifact_sha: "e1fec35597d4"
+    artifact_sha: "fb0ef2f87533"
     passed_at: ""
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"

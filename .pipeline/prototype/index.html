@@ -54,18 +54,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 h1,h2,h3{margin:0;text-wrap:balance}
 h2{font-size:18px;font-weight:600;letter-spacing:-.01em}
 
-/* prototype controls */
-.proto{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px))) 0;
-  padding:8px max(16px,env(safe-area-inset-left,0px));background:var(--overlay);border-bottom:1px dashed var(--border-strong);
-  display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--overlay)}
-.proto b{font-weight:600;margin-right:4px}
-.chip{border:1px solid var(--border-strong);background:transparent;border-radius:var(--r-pill);padding:4px 10px;font-size:12px;font-weight:500}
-.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent-line);color:var(--accent)}
 
-header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:20px}
+header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:24px}
 header.top h1{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
-.who{font-size:12px;color:var(--muted);text-align:right;white-space:nowrap}
+.who{font-size:12px;color:var(--muted);text-align:right;white-space:nowrap;line-height:1.8}
 
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:20px}
 
@@ -141,6 +133,8 @@ header.top h1{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1
 .entry .m{font-family:var(--mono);font-weight:700}
 .entry .m small{display:block;text-align:right}
 
+.histlink{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--text);text-decoration:none}
+.histlink:hover{border-color:var(--accent-line)}
 .tip{display:flex;gap:12px;align-items:center;font-size:14px}
 .empty{text-align:center;padding:28px 16px;color:var(--text-2)}
 .empty svg{width:72px;height:72px}
@@ -183,21 +177,7 @@ header.top h1{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1
 @media (max-width:380px){.big{font-size:52px}.ring{width:88px;height:88px}.types{grid-template-columns:repeat(3,1fr)}}
 </style>
 
-<div class="proto" role="region" aria-label="Prototype controls">
-  <b>Prototype</b>
-  <span class="muted">View as</span>
-  <button class="chip" id="v-friend" aria-pressed="true">Friend</button>
-  <button class="chip" id="v-owner" aria-pressed="false">Dee</button>
-  <span class="muted">· State</span>
-  <button class="chip" data-state="live" aria-pressed="true">Live</button>
-  <button class="chip" data-state="loading" aria-pressed="false">Loading</button>
-  <button class="chip" data-state="offline" aria-pressed="false">Offline</button>
-  <button class="chip" data-state="empty" aria-pressed="false">Day 1</button>
-  <button class="chip" id="finish">Preview finish</button>
-  <button class="chip" id="reset">Reset</button>
-</div>
-
-<main class="wrap" id="app"></main>
+<main class="wrap" id="app" aria-live="polite"></main>
 <canvas id="confetti" hidden></canvas>
 <div id="sheet-root"></div>
 <div id="toast-root"></div>
@@ -267,7 +247,7 @@ const clampDay=s=>s<START?START:(s>END?END:s);
 
 /* ---------- state ---------- */
 let entries=SEED.map(e=>({...e})), nextId=10;
-let view="friend", signedIn=false, uiState="live";
+let signedIn=false;
 let today=clampDay(torontoToday());
 
 /* ---------- rules ---------- */
@@ -313,26 +293,28 @@ const bubble=(id,grey)=>`<span class="bubble ${grey?"grey":(T[id]?T[id].tone:"te
 const $=s=>document.querySelector(s);
 const app=$("#app");
 function render(){
-  if(uiState==="loading"){app.innerHTML=header()+`<div class="skel" style="height:190px"></div><div class="skel" style="height:90px"></div><div class="skel" style="height:320px"></div>`;return}
   const c=compute();
-  const owner=view==="owner"&&signedIn;
+  const route=location.hash==="#history"?"history":"home";
   let h=header();
-  if(uiState==="offline") h+=`<div class="banner" role="status"><strong>You're offline.</strong> Showing the last progress we loaded. New workouts can be logged when you're back online.</div>`;
-  h+=hero(c);
-  if(view==="owner"&&!signedIn) h+=`<button class="ghost" id="signin">Sign in to log workouts</button>`;
-  if(owner) h+=`<button class="cta" id="logbtn"${uiState==="offline"?" disabled":""}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Log a workout</button>`;
-  h+=quote();
-  h+=calendar(c);
-  h+=stats(c);
-  h+=logList(c,owner);
-  if(owner) h+=`<div class="card tip">${bubble("sparkle")}<div><strong>Keep it on your home screen.</strong> In Safari tap Share, then <em>Add to Home Screen</em>. It opens like an app and remembers you're signed in.</div></div>`;
-  h+=`<p class="muted" style="font-size:12px;text-align:center;margin:8px 0 0">Challenge rules: a day counts when one workout hits 30 min at the YMCA or 45 min at home.</p>`;
+  if(route==="history"){
+    h+=`<a class="link" href="#" id="back" style="align-self:flex-start">← Back to progress</a>`;
+    h+=logList(c,signedIn);
+  } else {
+    h+=hero(c);
+    if(signedIn) h+=`<button class="cta" id="logbtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Log a workout</button>`;
+    h+=quote();
+    h+=calendar(c);
+    h+=stats(c);
+    h+=`<a class="card histlink" href="#history"><span><strong>Workout history</strong><span class="muted" style="display:block;font-size:13px">${c.sessions} logged · ${c.totalMin} min${signedIn?" · edit or delete here":""}</span></span><span aria-hidden="true" style="font-size:20px">→</span></a>`;
+    if(signedIn) h+=`<div class="card tip">${bubble("sparkle")}<div><strong>Keep it on your home screen.</strong> In Safari tap Share, then <em>Add to Home Screen</em>. It opens like an app and remembers you're signed in.</div></div>`;
+  }
+  h+=`<p class="muted" style="font-size:12px;text-align:center;margin:8px 0 0">A day counts when one workout hits 30 min at the YMCA or 45 min at home.<br>Updates live as Dee logs.</p>`;
   app.innerHTML=h;
   bind();
 }
 function header(){
   return `<header class="top"><div><div class="eyebrow">30 in 45 · Nov 9 – Dec 23</div><h1>Dee's workout challenge</h1></div>
-  <div class="who">${view==="owner"&&signedIn?"Signed in as Dee":"Day "+Math.min(45,Math.max(1,dnum(today)-dnum(START)+1))+" of 45"}</div></header>`;
+  <div class="who">Day ${Math.min(45,Math.max(1,dnum(today)-dnum(START)+1))} of 45<br>${signedIn?`<button class="link" id="signout" style="font-size:12px">Sign out</button>`:`<button class="link" id="signin" style="font-size:12px">Dee? Sign in</button>`}</div></header>`;
 }
 function hero(c){
   const finished=c.done>=GOAL;
@@ -394,7 +376,7 @@ function logList(c,owner){
   const items=list.map(e=>{const q=qualifies(e);const where=e.type==="other"?(e.where==="home"?" · home":" · YMCA"):"";
     const inner=`${bubble(e.type,!q)}<div><div class="t">${T[e.type].name}${where}</div><div class="s">${fmt(e.date,{weekday:"short",month:"short",day:"numeric"})}${q?"":" · <span class='pill grey'>Didn't count · under "+minFor(e)+" min</span>"}</div></div><div class="m num">${e.min}<small class="muted" style="font-weight:500;font-size:11px">min</small></div>`;
     return `<li>${owner?`<button class="entry${q?"":" short"}" data-edit="${e.id}" aria-label="Edit ${T[e.type].name} on ${e.date}">${inner}</button>`:`<div class="entry${q?"":" short"}">${inner}</div>`}</li>`}).join("");
-  return `<section class="card" aria-label="Workout log"><div class="cal-head"><h2>Every workout</h2><span class="muted" style="font-size:13px">${c.sessions} logged${owner?" · tap to edit":""}</span></div><ul class="log">${items}</ul></section>`;
+  return `<section class="card" aria-label="Workout log"><div class="cal-head"><h2>Workout history</h2><span class="muted" style="font-size:13px">${c.sessions} logged${owner?" · tap to edit":""}</span></div><ul class="log">${items}</ul></section>`;
 }
 
 /* ---------- sheets ---------- */
@@ -413,10 +395,10 @@ const X=`<button class="x" data-close aria-label="Close"><svg width="16" height=
 function signInSheet(){
   openSheet(`<div class="row"><h3>Sign in</h3>${X}</div>
    <div id="step1"><label class="lab" for="email">Your email</label><input class="field" id="email" type="email" value="dee@example.com" data-autofocus>
-   <p class="muted" style="font-size:13px;margin:8px 0 14px">We'll email you a 6-digit code. Only Dee's email can log workouts.</p>
+   <p class="muted" style="font-size:13px;margin:8px 0 14px">We'll email you a 6-digit code. Only Dee's email can log workouts.</p><p class="note warn" style="margin:0 0 14px">Preview only: no email is sent yet. Email codes start working once the app is connected to Supabase.</p>
    <button class="cta" id="send">Email me a code</button></div>
    <div id="step2" hidden><label class="lab" for="c1">Enter the 6-digit code</label><input class="field num" id="c1" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="one-time-code">
-   <p class="muted" style="font-size:13px;margin:8px 0 14px">Prototype: any 6 digits work.</p><p class="note warn" id="cerr" hidden>That code doesn't match. Check the latest email and try again.</p>
+   <p class="muted" style="font-size:13px;margin:8px 0 14px">Preview only: type any 6 digits.</p><p class="note warn" id="cerr" hidden>That code doesn't match. Check the latest email and try again.</p>
    <button class="cta" id="verify">Sign in</button></div>`,()=>{
     $("#send").onclick=()=>{$("#step1").hidden=true;$("#step2").hidden=false;$("#c1").focus()};
     $("#verify").onclick=()=>{if(!/^\d{6}$/.test($("#c1").value)){$("#cerr").hidden=false;return}signedIn=true;closeSheet();render();toast("Signed in. You'll stay signed in on this phone.")};
@@ -479,22 +461,12 @@ function celebrate(){
 /* ---------- bindings ---------- */
 function bind(){
   const s=$("#signin");s&&(s.onclick=signInSheet);
+  const so=$("#signout");so&&(so.onclick=()=>{signedIn=false;render();toast("Signed out.")});
   const l=$("#logbtn");l&&(l.onclick=()=>logSheet());
+  const bk=$("#back");bk&&(bk.onclick=e=>{e.preventDefault();history.replaceState(null,"",location.pathname+location.search);render();scrollTo(0,0)});
   app.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>logSheet(entries.find(e=>e.id===+b.dataset.edit)));
 }
-function setView(v){view=v;$("#v-friend").setAttribute("aria-pressed",v==="friend");$("#v-owner").setAttribute("aria-pressed",v==="owner");render()}
-$("#v-friend").onclick=()=>setView("friend");
-$("#v-owner").onclick=()=>setView("owner");
-document.querySelectorAll("[data-state]").forEach(b=>b.onclick=()=>{
-  uiState=b.dataset.state;document.querySelectorAll("[data-state]").forEach(x=>x.setAttribute("aria-pressed",x===b));
-  if(uiState==="empty"){entries=[];today=START}else if(!entries.length){entries=SEED.map(e=>({...e}));today=clampDay(torontoToday())}
-  if(uiState!=="empty")today=clampDay(torontoToday());
-  render();
-});
-$("#finish").onclick=()=>{entries=SEED.map(e=>({...e}));let d=addDays(START,1);while(compute().done<GOAL-1){if(!entries.some(e=>e.date===d))entries.push({id:nextId++,date:d,type:TYPES[nextId%7].id,min:45});d=addDays(d,1)}
-  if(d>today)today=d;setView("owner");signedIn=true;render();logSheet()};
-$("#reset").onclick=()=>{entries=SEED.map(e=>({...e}));signedIn=false;uiState="live";today=clampDay(torontoToday());
-  document.querySelectorAll("[data-state]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.state==="live"));setView("friend")};
+addEventListener("hashchange",()=>{render();scrollTo(0,0)});
 render();
 })();
 </script>
