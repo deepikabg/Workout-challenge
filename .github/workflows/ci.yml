@@ -1,0 +1,32 @@
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Secret scan (G-05)
+        run: node scripts/secret-scan.mjs
+      - name: Unit + fixture tests (C-01..C-15)
+        env:
+          TZ: UTC   # rules must not depend on the machine's time zone
+        run: npm test
+  live-security:
+    # J-6, G-01, G-02, G-04 against the real Supabase project (read-only; write attempts must be refused)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Live security checks
+        env:
+          LIVE: '1'
+        run: node --test "tests/live/*.live.mjs"

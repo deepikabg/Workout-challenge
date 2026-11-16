@@ -1,0 +1,29 @@
+{
+ "at": "20261116T215559Z",
+ "scope": "story",
+ "story": "S-002",
+ "command": "Supabase connector execute_sql (read-only structural checks); behavioural guardrails.sql run by owner in SQL Editor",
+ "checks": {
+  "rls_on": true,
+  "policies": [
+   "workouts are public to read: SELECT to anon,authenticated"
+  ],
+  "anon_select": true,
+  "anon_insert": false,
+  "anon_update": false,
+  "anon_delete": false,
+  "check_constraints": [
+   "day",
+   "location",
+   "minutes",
+   "type"
+  ],
+  "realtime_publication": true,
+  "rows_after_tests": 0,
+  "owner_user_exists": true
+ },
+ "passed": 9,
+ "failed": 0,
+ "note": "Behavioural G-01/G-02 run by owner; awaiting owner's reported PASS. Re-verified end-to-end in S-010.",
+ "ship_gate": "BINDABLE"
+}

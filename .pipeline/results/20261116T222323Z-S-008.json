@@ -1,0 +1,10 @@
+{
+ "at": "20261116T222323Z",
+ "scope": "story",
+ "story": "S-008",
+ "command": "npm test (46) + npm run e2e (11)",
+ "passed": 57,
+ "failed": 0,
+ "evals": "P-01 manifest + PNG icons pass; P-02 SW caches shell only, 0 Supabase URLs cached; J-5 install path ready (device check in qa-verify)",
+ "ship_gate": "BINDABLE"
+}

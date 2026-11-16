@@ -1,0 +1,3 @@
+{ "today": "2026-11-17", "loggedAtUtc": "2026-11-17T04:45:00Z", "expectDay": "2026-11-16",
+  "expect": { "done": 1, "streak": 1 },
+  "rows": [ { "id": "n1", "day": "2026-11-16", "type": "gym", "location": "ymca", "minutes": 40 } ] }

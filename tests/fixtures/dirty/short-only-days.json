@@ -1,0 +1,6 @@
+{ "today": "2026-11-22", "expect": { "done": 0, "sessions": 4, "totalMin": 99, "streak": 0 },
+  "rows": [
+    { "id": "s1", "day": "2026-11-20", "type": "homeyoga", "location": "home", "minutes": 44 },
+    { "id": "s2", "day": "2026-11-21", "type": "gravity", "location": "ymca", "minutes": 29 },
+    { "id": "s3", "day": "2026-11-22", "type": "other", "location": "home", "minutes": 15 },
+    { "id": "s4", "day": "2026-11-22", "type": "other", "location": "home", "minutes": 11 } ] }

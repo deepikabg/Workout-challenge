@@ -1,0 +1,10 @@
+{
+ "at": "20261116T221114Z",
+ "scope": "story",
+ "story": "S-003",
+ "command": "npm test (TZ=UTC and TZ=Pacific/Kiritimati) + node scripts/secret-scan.mjs",
+ "passed": 24,
+ "failed": 0,
+ "evals": "G-05 clean; C-04/05/06/07/09 fixtures pass",
+ "ship_gate": "BINDABLE"
+}

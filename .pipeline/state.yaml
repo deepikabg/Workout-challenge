@@ -7,41 +7,50 @@ pipeline:
   created: "2026-11-16"
 
 gates:
-  brainstorm:            { status: in-progress, mode: gap-interview, artifact: "", artifact_sha: "", passed_at: "" }
+  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "f5187568e5a4", passed_at: "2026-11-16" }
   market-scan:
     status: skipped(D-001)
     recon_done: false
     wedge_verdict: n/a           # personal tool, no market
-  eval-spec:             { status: pending, mode: lite, artifact: "", artifact_sha: "", passed_at: "" }
+  eval-spec:             { status: passed, mode: lite, artifact: ".pipeline/Eval-Spec.md", artifact_sha: "b91ebb36bae8", passed_at: "2026-11-16" }
   prototype:
-    status: pending
-    artifact: ""
-    artifact_sha: ""
-    passed_at: ""
-    design_prefs: {}
-    validation: { assumption_class: "", method: "founder-as-user", verdict: "", decision: "" }
-  architecture-checkpoint: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
-  api-contract-definition: { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
-  security-baseline:     { status: pending, artifact: "", artifact_sha: "", passed_at: "" }
+    status: passed
+    artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
+    artifact_sha: "4f73a2fd07ff"
+    passed_at: "2026-11-16"
+    design_prefs:
+      source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
+      adjectives: [cute, encouraging]
+      tokens: "teal-400 #4dd9b8 brand-primary · coral-400 #e8655a brand-cta · neutral 0–1000 · dark + light semantic sets"
+      type: "Inter (Display/Heading/Body/Label/Eyebrow) + JetBrains Mono for numbers"
+      icons: "Lucide, stroke-only, currentColor, 16/20/24px"
+      components: "ButtonPrimary/Ghost/Link, Input, Card, Badge/Pill, Eyebrow, Section divider, Nav"
+      workout_icons: "custom illustrations in teal/coral palette (D-011)"
+      title: "Dee's workout challenge"
+      mode: "dark + light, follows system"
+    validation: { assumption_class: "usable", method: "founder-as-user cold-drive on phone", verdict: "inconclusive", evidence: "owner drove sign-in + logging; friction found and fixed (demo code); tap count not measured — re-check in qa-verify J-2", decision: "proceed" }
+  architecture-checkpoint: { status: passed, artifact: ".pipeline/Architecture.md", artifact_sha: "82a2ffb807dc", passed_at: "2026-11-16" }
+  api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "c49b5536b2c3", passed_at: "2026-11-16" }
+  security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "c8f833986048", passed_at: "2026-11-16" }
   story-map:
-    status: pending
-    artifact: ""
-    artifact_sha: ""
-    passed_at: ""
-    traceability: ""
-    plan_approved_by: ""
-    github: { synced: false, project_url: "" }
-  deploy-gate:           { status: pending, report: "", staging_url: "", prod_approved_by: "", approved_at: "" }
+    status: passed
+    artifact: ".pipeline/Story-Map.md"
+    artifact_sha: "1aec7add97d5"
+    passed_at: "2026-11-16"
+    traceability: complete
+    plan_approved_by: "owner (chat) 2026-11-16"
+    github: { synced: true, project_url: "issues #1-#10 (labels batch-N); Projects board unavailable in this environment" }
+  deploy-gate:           { status: awaiting-prod-approval, report: ".pipeline/Deploy-Gate.md", staging_url: "n/a (no staging; localhost pre-handoff)", prod_approved_by: "", approved_at: "" }
   qa-verify:
-    pre_handoff: { status: pending, target: "localhost", report: "", verdict: "", day0_checklist: "" }
+    pre_handoff: { status: passed, target: "localhost (stubbed Supabase) + live API checks in Actions", report: ".pipeline/Deploy-Gate.md", verdict: "green", day0_checklist: "pass" }
     staging:     { status: pending, report: "", verdict: "" }
     prod:        { status: pending, report: "", verdict: "", monitoring_window_end: "" }
 
 triad_approval:
-  approved: false
-  approved_by: ""
-  at: ""
-  shas: { brief: "", eval_spec: "", prototype: "" }
+  approved: true
+  approved_by: owner (chat)
+  at: "2026-11-16"   # re-approved via owner decision D-029 (password sign-in, prototype v7)
+  shas: { brief: "f5187568e5a4", eval_spec: "b91ebb36bae8", prototype: "4f73a2fd07ff" }
 
 intake:
   source_doc: "chat requirements 2026-11-16 (see Brainstorm-Brief.md once written)"
@@ -52,19 +61,265 @@ intake:
     - Where/how will the owner log (phone, desktop)?
     - Design prefs / voice
     - Daily quote source
-  gaps_resolved: false
+  gaps_resolved: true   # D-005..D-009
 
 build:
-  stories: []
+  stories:
+    - id: S-001
+      title: "Rules engine + config"
+      epic: E1
+      eval_criteria: ['C-01..C-14', 'C-15']
+      journey: "all"
+      depends_on: []
+      batch: 1
+      parallel: true
+      github_issue: 1
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 2 }
+      worker_context: fresh
+    - id: S-002
+      title: "Supabase project + schema"
+      epic: E2
+      eval_criteria: ['G-01', 'G-02', 'C-06']
+      journey: "J-1,J-6"
+      depends_on: []
+      batch: 1
+      parallel: true
+      github_issue: 2
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 3 }
+      worker_context: fresh
+    - id: S-003
+      title: "CI + secret scan + dirty fixtures"
+      epic: E5
+      eval_criteria: ['G-05', 'C-04', 'C-05', 'C-06', 'C-07', 'C-09']
+      journey: "-"
+      depends_on: ['S-001']
+      batch: 2
+      parallel: true
+      github_issue: 3
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-004
+      title: "Read-only UI port"
+      epic: E3
+      eval_criteria: ['J-1', 'C-01', 'C-13', 'P-02']
+      journey: "J-1"
+      depends_on: ['S-001', 'S-002']
+      batch: 2
+      parallel: true
+      github_issue: 4
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-005
+      title: "Owner sign-in"
+      epic: E4
+      eval_criteria: ['C-14', 'G-04', 'J-2']
+      journey: "J-2"
+      depends_on: ['S-004']
+      batch: 3
+      parallel: false
+      github_issue: 5
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-006
+      title: "Owner write path + seed"
+      epic: E2/E3
+      eval_criteria: ['J-2', 'J-3', 'J-4', 'J-6', 'J-7', 'G-03', 'G-04', 'C-03', 'C-09', 'C-10']
+      journey: "J-2,J-3,J-4"
+      depends_on: ['S-005', 'S-002']
+      batch: 4
+      parallel: false
+      github_issue: 6
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-007
+      title: "Live updates"
+      epic: E2
+      eval_criteria: ['J-8']
+      journey: "J-8"
+      depends_on: ['S-006']
+      batch: 5
+      parallel: true
+      github_issue: 7
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-008
+      title: "Installable PWA"
+      epic: E5
+      eval_criteria: ['P-01', 'P-02', 'J-5']
+      journey: "J-5"
+      depends_on: ['S-004']
+      batch: 5
+      parallel: true
+      github_issue: 8
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-009
+      title: "Keep-alive + Pages deploy"
+      epic: E5
+      eval_criteria: ['D-019', 'J-1']
+      journey: "J-1"
+      depends_on: ['S-003']
+      batch: 5
+      parallel: true
+      github_issue: 9
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+    - id: S-010
+      title: "Journey suite J-1..J-8"
+      epic: E5
+      eval_criteria: ['J-1..J-8', 'ship-gate']
+      journey: "all"
+      depends_on: ['S-001', 'S-002', 'S-003', 'S-004', 'S-005', 'S-006', 'S-007', 'S-008', 'S-009']
+      batch: 6
+      parallel: false
+      github_issue: 10
+      failing_test_written: true
+      status: done
+      budget: { max_iterations: 5, used: 0 }
+      worker_context: fresh
+  human_tasks:
+    - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: done, owner_uuid: "7bcf9a92-b2ba-4992-9b33-a1313a70e446", note: "recreated with password (D-029)" }
+    - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: dropped, reason: "D-029 password sign-in" }
+    - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: done, note: "verified live: /auth/v1/settings disable_signup=true (Actions run 43970030441)" }
+    - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
 
-test_runs: []
+test_runs:
+  - at: "20261116T214207Z"
+    scope: story
+    story: S-001
+    command: "npm test"
+    passed: 17
+    failed: 0
+    eval_scores: { C-01..C-15: pass }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T214207Z-S-001.json"
+    checkpoint_commit: "2528fe8"
+  - at: "20261116T215559Z"
+    scope: story
+    story: S-002
+    command: "execute_sql read-only structural checks (+ owner-run tests/sql/guardrails.sql)"
+    passed: 9
+    failed: 0
+    eval_scores: { G-01: "structural pass (anon INSERT privilege false)", G-02: "structural pass (no UPDATE/DELETE privilege)", C-06: "check constraint present" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T215559Z-S-002.json"
+    checkpoint_commit: "(this commit)"
 
+  - at: "20261116T221114Z"
+    scope: story
+    story: S-003
+    command: "npm test (TZ=UTC and TZ=Pacific/Kiritimati) + node scripts/secret-scan.mjs"
+    passed: 24
+    failed: 0
+    eval_scores: { summary: "G-05 clean; C-04/05/06/07/09 fixtures pass" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T221114Z-S-003.json"
+    checkpoint_commit: "(see git log: checkpoint(S-003))"
+  - at: "20261116T221444Z"
+    scope: story
+    story: S-004
+    command: "npm test (30) + npm run e2e (J-1, J-1 offline)"
+    passed: 32
+    failed: 0
+    eval_scores: { summary: "J-1 pass (25/38, 5 counted cells, history 5, no write controls, no h-scroll); P-02 UI half + NETWORK banner pass" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T221444Z-S-004.json"
+    checkpoint_commit: "(see git log: checkpoint(S-004))"
+  - at: "20261116T221715Z"
+    scope: story
+    story: S-005
+    command: "npm test (37) + npm run e2e (4)"
+    passed: 41
+    failed: 0
+    eval_scores: { summary: "C-14 pass (unit + browser 48h30m); G-04 client has no sign-up path; J-2 sign-in step pass" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T221715Z-S-005.json"
+    checkpoint_commit: "(see git log: checkpoint(S-005))"
+  - at: "20261116T222052Z"
+    scope: story
+    story: S-006
+    command: "npm test (42) + npm run e2e (8) + pg_policies read"
+    passed: 50
+    failed: 0
+    eval_scores: { summary: "J-2 (2 taps → 24/38), J-3, J-4, J-7 pass; G-03 structural (all write policies require owner uid); C-03/C-09/C-10 UI pass" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222052Z-S-006.json"
+    checkpoint_commit: "(see git log: checkpoint(S-006))"
+  - at: "20261116T222143Z"
+    scope: story
+    story: S-007
+    command: "npm test (46) + npm run e2e (9)"
+    passed: 55
+    failed: 0
+    eval_scores: { summary: "J-8 pass via 60s/focus backstop; realtime websocket path pending live check in qa-verify" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222143Z-S-007.json"
+    checkpoint_commit: "(see git log: checkpoint(S-007))"
+  - at: "20261116T222323Z"
+    scope: story
+    story: S-008
+    command: "npm test (46) + npm run e2e (11)"
+    passed: 57
+    failed: 0
+    eval_scores: { summary: "P-01 manifest + PNG icons pass; P-02 SW caches shell only, 0 Supabase URLs cached; J-5 install path ready (device check in qa-verify)" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222323Z-S-008.json"
+    checkpoint_commit: "(see git log: checkpoint(S-008))"
+  - at: "20261116T222352Z"
+    scope: story
+    story: S-009
+    command: "npm test (48)"
+    passed: 48
+    failed: 0
+    eval_scores: { summary: "keep-alive + Pages workflow shape pass; live runs verified after merge to main (deploy-gate)" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222352Z-S-009.json"
+    checkpoint_commit: "(see git log: checkpoint(S-009))"
+  - at: "20261116T222638Z"
+    scope: story
+    story: S-010
+    command: "npm run loop-phase3 (local: 48 unit + 11 browser journeys, stubbed Supabase) + GitHub Actions live-security run 43970030441 (3 live, 0 skipped)"
+    passed: 62
+    failed: 0
+    eval_scores: { summary: "J-1..J-4, J-7, J-8 (backstop), P-01, P-02, C-14 pass in browser; LIVE J-1 data, J-6/G-01/G-02, G-04 pass against real project. Not yet verified: realtime websocket push, J-5 on a real phone, live-site render — qa-verify after deploy" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222638Z-S-010.json"
+    checkpoint_commit: "(see git log: checkpoint(S-010))"
 git:
-  remote: https://github.com/deepikabg/workout-challenge
+  remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
   push_checkpoints: true
   create_remote_declined: false
 
-approvals: []
+approvals:
+  - { action: "create Supabase project workout-challenge (ca-central-1, free) + run migrations 001/002", target: "Supabase org wjavfhrmfcfxzfdbpecp", approved_by: owner (chat), at: "2026-11-16", rollback_plan: "delete/pause project from dashboard; migrations are additive on an empty project" }
 parked: []
 decisions: ".pipeline/DECISIONS.md"

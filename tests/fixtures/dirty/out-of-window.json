@@ -1,0 +1,6 @@
+{ "today": "2026-12-24", "expect": { "done": 1, "sessions": 1, "totalMin": 30, "daysLeft": 0 },
+  "rows": [
+    { "id": "o1", "day": "2026-11-08", "type": "gym", "location": "ymca", "minutes": 90 },
+    { "id": "o2", "day": "2026-12-23", "type": "gym", "location": "ymca", "minutes": 30 },
+    { "id": "o3", "day": "2026-12-24", "type": "gym", "location": "ymca", "minutes": 90 },
+    { "id": "o4", "day": "2027-01-01", "type": "gym", "location": "ymca", "minutes": 90 } ] }

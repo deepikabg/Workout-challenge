@@ -1,0 +1,5 @@
+{ "today": "2026-11-25", "expect": { "done": 2, "sessions": 3, "totalMin": 115 },
+  "rows": [
+    { "id": "h1", "day": "2026-11-23", "type": "other", "location": "home", "minutes": 40 },
+    { "id": "h2", "day": "2026-11-24", "type": "other", "location": "home", "minutes": 45 },
+    { "id": "h3", "day": "2026-11-25", "type": "other", "location": "ymca", "minutes": 30 } ] }

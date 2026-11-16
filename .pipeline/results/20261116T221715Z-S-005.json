@@ -1,0 +1,10 @@
+{
+ "at": "20261116T221715Z",
+ "scope": "story",
+ "story": "S-005",
+ "command": "npm test (37) + npm run e2e (4)",
+ "passed": 41,
+ "failed": 0,
+ "evals": "C-14 pass (unit + browser 48h30m); G-04 client has no sign-up path; J-2 sign-in step pass",
+ "ship_gate": "BINDABLE"
+}

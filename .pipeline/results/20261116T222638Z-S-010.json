@@ -1,0 +1,11 @@
+{
+ "at": "20261116T222638Z",
+ "scope": "story",
+ "story": "S-010",
+ "command": "npm run loop-phase3 (local: 48 unit + 11 browser journeys, stubbed Supabase) + GitHub Actions live-security run 43970030441 (3 live, 0 skipped)",
+ "passed": 62,
+ "failed": 0,
+ "evals": "J-1..J-4, J-7, J-8 (backstop), P-01, P-02, C-14 pass in browser; LIVE J-1 data, J-6/G-01/G-02, G-04 pass against real project. Not yet verified: realtime websocket push, J-5 on a real phone, live-site render \u2014 qa-verify after deploy",
+ "ship_gate": "BINDABLE",
+ "actions_run": "https://github.com/deepikabg/Workout-challenge/actions/runs/43970030441"
+}
