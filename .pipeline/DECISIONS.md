@@ -165,3 +165,9 @@ Decision: Import owner's favourite quotes from their website — dropped by owne
 Trigger: owner ask, then withdrawn
 Affects: —     Decided by: human · approved: n/a
 Supersedes: —
+
+## D-028 · deploy-gate · 2026-11-16 · status: accepted
+Decision: Owner pre-approves the Supabase irreversibles (create project, run schema migrations). Repo is public (A-4 satisfied). Production deploy to GitHub Pages still requires its own approval at deploy-gate.
+Trigger: owner approval in chat
+Affects: —     Decided by: human · approved: y
+Supersedes: —

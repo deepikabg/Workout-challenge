@@ -69,11 +69,12 @@ build:
 test_runs: []
 
 git:
-  remote: https://github.com/deepikabg/workout-challenge
+  remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
   push_checkpoints: true
   create_remote_declined: false
 
-approvals: []
+approvals:
+  - { action: "create Supabase project workout-challenge (ca-central-1, free) + run migrations 001/002", target: "Supabase org wjavfhrmfcfxzfdbpecp", approved_by: owner (chat), at: "2026-11-16", rollback_plan: "delete/pause project from dashboard; migrations are additive on an empty project" }
 parked: []
 decisions: ".pipeline/DECISIONS.md"
