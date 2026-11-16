@@ -56,3 +56,9 @@ Decision: Daily quote = mixed tone (motivational, playful, mindful); one quote p
 Trigger: user answer (option d)
 Affects: Brainstorm-Brief · Prototype     Decided by: human · approved: y
 Supersedes: —
+
+## D-010 · prototype · 2026-11-16 · status: accepted
+Decision: Non-commercial personal tool — no monetization, pricing, or viability testing; stay on free tiers.
+Trigger: user statement
+Affects: Brainstorm-Brief (viable class N/A)     Decided by: human · approved: y
+Supersedes: —
