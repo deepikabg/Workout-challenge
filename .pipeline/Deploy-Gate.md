@@ -29,4 +29,4 @@ Revert the merge commit on `main` (Pages redeploys the previous version), or dis
 ## Production deploy — 2026-11-16
 - Owner merged PR #11 (go-live approval). Deploy runs 1–2 refused by github-pages environment branch rule; fixed by owner (default branch → main; `main` allowed). Run 43978143133: tests + secret scan + deploy all green.
 - Keep-alive manual run 43978225771 green against the live project.
-- Live URL: https://deepikabg.github.io/Workout-challenge/
+- Live URL: https://deepikabg.github.io/workout-challenge/

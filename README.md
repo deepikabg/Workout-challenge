@@ -1,6 +1,6 @@
 # Dee's workout challenge
 
-**Live:** https://deepikabg.github.io/Workout-challenge/
+**Live:** https://deepikabg.github.io/workout-challenge/
 
 A small web app that tracks a personal challenge: **30 workout days in 45 days, Nov 9 – Dec 23, 2026**.
 Friends open the link and see progress live. Only Dee can sign in and log workouts.
