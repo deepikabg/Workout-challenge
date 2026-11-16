@@ -50,3 +50,9 @@ Decision: Extra per-workout fields (notes, effort 1–5, instructor) — NOT bui
 Trigger: Claude recommendation
 Affects: —     Decided by: human · approved: n/a
 Supersedes: —
+
+## D-009 · brainstorm · 2026-11-16 · status: accepted
+Decision: Daily quote = mixed tone (motivational, playful, mindful); one quote per calendar day, same for every viewer.
+Trigger: user answer (option d)
+Affects: Brainstorm-Brief · Prototype     Decided by: human · approved: y
+Supersedes: —

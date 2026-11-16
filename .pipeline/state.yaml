@@ -7,12 +7,12 @@ pipeline:
   created: "2026-11-16"
 
 gates:
-  brainstorm:            { status: in-progress, mode: gap-interview, artifact: "", artifact_sha: "", passed_at: "" }
+  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "0336bfab3694", passed_at: "2026-11-16" }
   market-scan:
     status: skipped(D-001)
     recon_done: false
     wedge_verdict: n/a           # personal tool, no market
-  eval-spec:             { status: pending, mode: lite, artifact: "", artifact_sha: "", passed_at: "" }
+  eval-spec:             { status: in-progress, mode: lite, artifact: "", artifact_sha: "", passed_at: "" }
   prototype:
     status: pending
     artifact: ""
@@ -52,7 +52,7 @@ intake:
     - Where/how will the owner log (phone, desktop)?
     - Design prefs / voice
     - Daily quote source
-  gaps_resolved: false
+  gaps_resolved: true   # D-005..D-009
 
 build:
   stories: []
