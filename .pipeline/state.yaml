@@ -16,7 +16,7 @@ gates:
   prototype:
     status: in-review            # awaiting founder cold-drive + triad approval
     artifact: ".pipeline/prototype/index.html (hosted: https://claude.ai/artifact/Vjangm3gQogsBKLtkT5aho)"
-    artifact_sha: "aa0d94c0dd54"
+    artifact_sha: "d419977d275a"
     passed_at: ""
     design_prefs:
       source: "Figma — Power Moves Design System (file XgfKxhZCz5QBtj10XtqZLR, page 0:1)"
