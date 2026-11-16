@@ -70,7 +70,20 @@ Affects: Prototype     Decided by: human · approved: y
 Supersedes: —
 
 ## D-012 · prototype · 2026-11-16 · status: accepted
-Decision: Page title "Dee's workout challenge" (owner's name visible to friends). Workout list per Brief + "Other" (choose YMCA/home) by default.
-Trigger: user answer (title); default (type list — not objected)
-Affects: Prototype     Decided by: human · approved: y (title), default (types)
+Decision: Page title "Dee's workout challenge" (owner's name visible to friends). Workout list (final): Gravity, TotalTone, Core & Stretch, Kettlebell, Yoga class, Gym time (all YMCA, 30 min) · Home yoga (home, 45 min) · Other (owner picks YMCA or home → that minimum). "Home workout" dropped; "Gym (solo)" renamed "Gym time".
+Trigger: user answers
+Affects: Prototype · Brainstorm-Brief (type table) · Eval-Spec (C-03 type mapping)     Decided by: human · approved: y
 Supersedes: —
+
+## D-013 · architecture · 2026-11-16 · status: accepted
+Decision: Host on GitHub Pages from a PUBLIC repo. Code and workout data are publicly readable (data is public by design anyway); writes stay owner-only via Supabase RLS. Supabase anon key in the page is public-safe by design; service_role key must never be committed (G-05).
+Trigger: user answer
+Rationale + alternatives: Cloudflare Pages + private repo weighed; user chose simplicity. Owner must flip repo visibility to public (Claude cannot change visibility).
+Affects: Architecture · Security-Baseline     Decided by: human · approved: y
+Supersedes: —
+
+## D-014 · prototype · 2026-11-16 · status: accepted
+Decision: Style = Power Moves with a cute layer (tokens, Inter/JetBrains Mono, component shapes; softer radii, icons in pastel teal/coral bubbles, friendly copy, confetti at 30) + custom-drawn workout icons in the Power Moves palette. Refines D-011.
+Trigger: user answer
+Affects: Prototype     Decided by: human · approved: y
+Supersedes: D-011 (style detail)
