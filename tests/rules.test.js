@@ -89,8 +89,8 @@ test('C-12 pace: needed = to-go / days-left, actual = done / elapsed days incl. 
 });
 
 test('C-13 quote is stable for a date and changes the next day', () => {
-  assert.equal(quoteFor('2026-11-16'), quoteFor('2026-11-16'));
-  assert.notEqual(quoteFor('2026-11-16'), quoteFor('2026-11-17'));
+  assert.deepEqual(quoteFor('2026-11-16'), quoteFor('2026-11-16'));
+  assert.notEqual(quoteFor('2026-11-16').text, quoteFor('2026-11-17').text);
   assert.ok(QUOTES.includes(quoteFor('2026-12-23')));
 });
 
@@ -101,10 +101,14 @@ test('C-14 sign out after 48 h inactivity, not before', () => {
   assert.equal(shouldSignOut(null, t), false);
 });
 
-test('C-15 quotes: encouraging only — no peer pressure, guilt, or rest/stillness lines', () => {
-  const banned = /\b(friend|watch|brag|guilt|lazy|rest|still|stillness|calm|breathe|mindful|couch)\b/i;
-  assert.ok(QUOTES.length >= 30);
-  for (const q of QUOTES) assert.doesNotMatch(q, banned, q);
+test('C-15 quotes: real athletes/coaches, attributed, no peer pressure, guilt, or rest/stillness framing', () => {
+  const banned = /\b(friends?|watching you|brag|guilt|lazy|rest day|stillness|calm|breathe|mindful|couch)\b/i;
+  assert.ok(QUOTES.length >= 40);
+  for (const q of QUOTES) {
+    assert.ok(q.text.length >= 20, q.text); assert.ok(q.by && q.by.length > 2, q.text);
+    assert.doesNotMatch(q.text, banned, q.text);
+  }
+  assert.equal(new Set(QUOTES.map(q => q.text)).size, QUOTES.length, 'no duplicates');
 });
 
 test('by-type breakdown counts sessions and minutes', () => {
