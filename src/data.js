@@ -1,7 +1,9 @@
-// Data access (Contract.md). Reads are public; writes arrive in S-006. Keeps a last-known copy for offline use.
+// Data access (Contract.md). Reads are public; writes are owner-only (enforced by RLS). Keeps a last-known copy for offline use.
 import { TYPES } from './config.js';
 
 const KNOWN = new Set(TYPES.map(t => t.id));
+const WHERE = Object.fromEntries(TYPES.map(t => [t.id, t.where]));
+const EDITABLE = ['day', 'type', 'location', 'minutes'];
 const CACHE_KEY = 'wc:last';
 const FIELDS = 'id,day,type,location,minutes,created_at';
 
@@ -29,6 +31,16 @@ export function classify(err) {
 
 const clean = r => ({ id: r.id, day: r.day, type: r.type, location: r.location, minutes: r.minutes });
 
+/** A new workout row. The client picks the UUID so a retried save is a no-op (idempotent create). */
+export function newWorkout({ day, type, minutes, location }) {
+  return { id: crypto.randomUUID(), day, type, location: WHERE[type] || location || 'ymca', minutes: Number(minutes) };
+}
+const pick = patch => Object.fromEntries(EDITABLE.filter(k => k in patch).map(k => [k, patch[k]]));
+async function run(promise) {
+  try { const { error } = await promise; return error ? { ok: false, error: classify(error) } : { ok: true }; }
+  catch (e) { return { ok: false, error: classify(e) }; }
+}
+
 function safeGet(storage, key) { try { return JSON.parse(storage?.getItem(key) ?? 'null'); } catch { return null; } }
 function safeSet(storage, key, value) { try { storage?.setItem(key, JSON.stringify(value)); } catch { /* private mode: fine */ } }
 
@@ -45,5 +57,8 @@ export function createStore({ client, storage = globalThis.localStorage, now = (
     safeSet(storage, CACHE_KEY, { rows, savedAt: now() });
     return { rows, offline: false, savedAt: now(), error: null };
   }
-  return { load };
+  const add = row => run(client.from('workouts').upsert(clean(row), { onConflict: 'id', ignoreDuplicates: true }));
+  const update = (id, patch) => run(client.from('workouts').update(pick(patch)).eq('id', id));
+  const remove = id => run(client.from('workouts').delete().eq('id', id));
+  return { load, add, update, remove };
 }

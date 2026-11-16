@@ -32,3 +32,20 @@ export async function stubAuth(page, { password = 'right-password', userId = OWN
   await page.route(/supabase\.co\/auth\/v1\/logout/, route => route.fulfill({ status: 204, body: '' }));
   await page.route(/supabase\.co\/auth\/v1\/user/, route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ id: userId, aud: 'authenticated', role: 'authenticated' }) }));
 }
+
+/** In-memory fake of the workouts table for owner writes (POST upsert / PATCH / DELETE). */
+export function memoryTable(rows) {
+  return async (route, req) => {
+    const url = new URL(req.url()), id = (url.searchParams.get('id') || '').replace(/^eq\./, '');
+    const m = req.method();
+    if (m === 'POST') { const body = JSON.parse(req.postData()); for (const r of [].concat(body)) if (!rows.some(x => x.id === r.id)) rows.push(r); }
+    else if (m === 'PATCH') { const patch = JSON.parse(req.postData()); Object.assign(rows.find(x => x.id === id) || {}, patch); }
+    else if (m === 'DELETE') { const i = rows.findIndex(x => x.id === id); if (i >= 0) rows.splice(i, 1); }
+    return route.fulfill({ status: m === 'POST' ? 201 : 204, body: '' });
+  };
+}
+
+export async function signInAsOwner(page) {
+  await page.click('#signin'); await page.fill('#email', 'dee@example.com'); await page.fill('#pw', 'right-password');
+  await page.click('#signform button[type=submit]'); await page.waitForSelector('#logbtn');
+}
