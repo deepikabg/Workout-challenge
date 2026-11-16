@@ -111,3 +111,9 @@ Decision: Owner sign-in email provided by the user in chat; it is NOT written to
 Trigger: user provided email; repo is public (D-013)
 Affects: Architecture · Security-Baseline     Decided by: claude · approved: pending security-baseline
 Supersedes: —
+
+## D-019 · architecture · 2026-11-16 · status: accepted
+Decision: Add a weekly keep-alive so the free Supabase project never auto-pauses (friends would otherwise see an error). Proposed mechanism: scheduled GitHub Actions workflow doing one read-only anon SELECT; design confirmed at architecture-checkpoint.
+Trigger: Claude recommendation, user approved
+Affects: Architecture · Eval-Spec (add keep-alive check)     Decided by: human · approved: y
+Supersedes: —
