@@ -33,12 +33,12 @@ gates:
   api-contract-definition: { status: passed, mode: lite, artifact: ".pipeline/Contract.md", artifact_sha: "0dcb558cad70", passed_at: "2026-11-16" }
   security-baseline:     { status: passed, artifact: ".pipeline/Security-Baseline.md", artifact_sha: "77e499cf0611", passed_at: "2026-11-16" }
   story-map:
-    status: awaiting-approval
+    status: passed
     artifact: ".pipeline/Story-Map.md"
     artifact_sha: "3ed858948b72"
-    passed_at: ""
+    passed_at: "2026-11-16"
     traceability: complete
-    plan_approved_by: ""
+    plan_approved_by: "owner (chat) 2026-11-16"
     github: { synced: true, project_url: "issues #1-#10 (labels batch-N); Projects board unavailable in this environment" }
   deploy-gate:           { status: pending, report: "", staging_url: "", prod_approved_by: "", approved_at: "" }
   qa-verify:
