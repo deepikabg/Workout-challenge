@@ -33,9 +33,14 @@ begin
       values (gen_random_uuid(), '2026-11-16', 'gym', 'ymca', 30);
     raise exception 'FAIL G-01: anon insert succeeded';
   exception when insufficient_privilege or not_null_violation then null; end;
-  update public.workouts set minutes = 999; get diagnostics n = row_count;
-  if n > 0 then raise exception 'FAIL G-02: anon updated % rows', n; end if;
-  delete from public.workouts; get diagnostics n = row_count;
-  if n > 0 then raise exception 'FAIL G-02: anon deleted % rows', n; end if;
+  -- G-02: either refused outright (no privilege) or 0 rows touched (RLS) counts as blocked
+  begin
+    update public.workouts set minutes = 999; get diagnostics n = row_count;
+    if n > 0 then raise exception 'FAIL G-02: anon updated % rows', n; end if;
+  exception when insufficient_privilege then null; end;
+  begin
+    delete from public.workouts; get diagnostics n = row_count;
+    if n > 0 then raise exception 'FAIL G-02: anon deleted % rows', n; end if;
+  exception when insufficient_privilege then null; end;
 end $$;
 select 'PASS' as guardrails;
