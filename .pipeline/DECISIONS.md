@@ -196,3 +196,9 @@ Decision: Go live. `main` created from the first commit so PR #11 had a target; 
 Trigger: owner approval (merge)
 Affects: —     Decided by: human · approved: y
 Supersedes: —
+
+## D-033 · post-launch · 2026-11-16 · status: applied
+Decision: Replace the 40 self-written daily lines with 40 quotes from athletes and coaches, shown with attribution (quote object {text, by}). Attributions are the widely cited ones, not checked against original sources. Banned-word test narrowed ("rest day" instead of "rest", which flagged Ali's "rest of your life"). README added.
+Trigger: owner feedback ("quotes are so short… find quotes from athletes and winners")
+Affects: Brainstorm-Brief (quote line) · Eval-Spec C-15 wording · Prototype copy (superseded by the live app)     Decided by: human · approved: y
+Supersedes: D-023 (quote content), D-031 unchanged

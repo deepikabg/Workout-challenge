@@ -35,7 +35,8 @@ export function hero(c) {
 }
 
 export function quote(today) {
-  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon('sparkle')}</span><div><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><p>${esc(quoteFor(today))}</p></div></section>`;
+  const q = quoteFor(today);
+  return `<section class="card quote" aria-label="Quote of the day"><span class="spark">${icon('sparkle')}</span><figure><div class="eyebrow" style="margin-bottom:6px">Today's nudge</div><blockquote><p>“${esc(q.text)}”</p></blockquote><figcaption class="tag">— ${esc(q.by)}</figcaption></figure></section>`;
 }
 
 export function calendar(c, today) {
