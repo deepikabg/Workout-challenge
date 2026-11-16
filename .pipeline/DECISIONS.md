@@ -44,3 +44,9 @@ Decision: Under-minimum workouts are allowed and saved; their minutes count towa
 Trigger: user answer
 Affects: Brainstorm-Brief · Eval-Spec (counting rule) · Prototype     Decided by: human · approved: y
 Supersedes: —
+
+## D-008 · brainstorm · 2026-11-16 · status: rejected
+Decision: Extra per-workout fields (notes, effort 1–5, instructor) — NOT built. Entry = date, type, duration only, to keep logging fast.
+Trigger: Claude recommendation
+Affects: —     Decided by: human · approved: n/a
+Supersedes: —
