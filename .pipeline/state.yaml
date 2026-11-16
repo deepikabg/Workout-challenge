@@ -198,7 +198,7 @@ build:
   human_tasks:
     - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: done, owner_uuid: "7bcf9a92-b2ba-4992-9b33-a1313a70e446", note: "recreated with password (D-029)" }
     - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: dropped, reason: "D-029 password sign-in" }
-    - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: pending }
+    - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: done, note: "owner-reported 2026-11-16 (dashboard setting; not SQL-verifiable — re-checked by G-04 in S-010)" }
     - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
 
 test_runs:
