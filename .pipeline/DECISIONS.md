@@ -4,7 +4,7 @@
 Decision: Classify Level 3 (greenfield + data store + auth) but run trimmed: skip market-scan; prototype validation is founder-as-user only; eval-spec lite.
 Trigger: Claude recommendation — personal 45-day tool, challenge already running, speed matters.
 Rationale + alternatives: Full ceremony weighed; market research cannot change a personal tracker's design.
-Affects: —     Decided by: claude (recommended; user proceeded without objection) · approved: implicit
+Affects: —     Decided by: human (on claude recommendation) · approved: y (2026-11-16)
 Supersedes: —
 
 ## D-002 · brainstorm · 2026-11-16 · status: accepted
