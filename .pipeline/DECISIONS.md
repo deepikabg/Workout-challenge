@@ -105,3 +105,9 @@ Decision: Daily quotes are encouraging and action-oriented only (some playful). 
 Trigger: user feedback on prototype v2 ("Stillness is also a workout" defeats the purpose)
 Affects: Prototype · Brainstorm-Brief     Decided by: human · approved: y
 Supersedes: D-009
+
+## D-018 · security · 2026-11-16 · status: accepted
+Decision: Owner sign-in email provided by the user in chat; it is NOT written to this (public) repo. Write access is tied to the owner's Supabase auth user id (UUID) in RLS, not an email string in code. New sign-ups are disabled once the owner account exists, so a stranger cannot create an account to probe with (backs G-03/G-04).
+Trigger: user provided email; repo is public (D-013)
+Affects: Architecture · Security-Baseline     Decided by: claude · approved: pending security-baseline
+Supersedes: —
