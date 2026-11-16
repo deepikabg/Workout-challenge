@@ -1,10 +1,11 @@
-// App entry: wires the Supabase client, data store, owner auth and renderer. Writes land in S-006.
+// App entry: wires the Supabase client, data store, owner auth, logging and renderer.
 import { SUPABASE_URL, SUPABASE_ANON_KEY, START } from './config.js';
 import { torontoDate } from './rules.js';
 import { createStore, errorMessage } from './data.js';
 import { createAuth } from './auth.js';
 import { page } from './ui.js';
 import { openSheet, closeSheet, toast, X } from './sheets.js';
+import { bindOwner } from './log.js';
 
 const client = globalThis.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false },
@@ -15,8 +16,6 @@ const app = document.getElementById('app');
 
 const state = { rows: [], today: torontoDate(), route: 'home', signedIn: false, offline: false, error: null, loading: true };
 const routeFromHash = () => (location.hash === '#history' ? 'history' : 'home');
-const hooks = []; // later stories register extra bindings (log sheet, edit)
-export const onRender = fn => hooks.push(fn);
 
 export function render() {
   state.today = torontoDate();
@@ -28,7 +27,7 @@ export function render() {
   on('back', e => { e.preventDefault(); history.replaceState(null, '', location.pathname + location.search); render(); scrollTo(0, 0); });
   on('signin', signInSheet);
   on('signout', async () => { await auth.signOut(); render(); toast('Signed out.'); });
-  hooks.forEach(fn => fn(state));
+  if (auth.signedIn) bindOwner({ store, state, refresh });
 }
 
 export async function refresh() {

@@ -1,0 +1,10 @@
+{
+ "at": "20261116T222052Z",
+ "scope": "story",
+ "story": "S-006",
+ "command": "npm test (42) + npm run e2e (8) + pg_policies read",
+ "passed": 50,
+ "failed": 0,
+ "evals": "J-2 (2 taps \u2192 24/38), J-3, J-4, J-7 pass; G-03 structural (all write policies require owner uid); C-03/C-09/C-10 UI pass",
+ "ship_gate": "BINDABLE"
+}

@@ -139,8 +139,8 @@ build:
       batch: 4
       parallel: false
       github_issue: 6
-      failing_test_written: false
-      status: pending
+      failing_test_written: true
+      status: done
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
     - id: S-007
@@ -258,6 +258,17 @@ test_runs:
     ship_gate: BINDABLE
     report_path: ".pipeline/results/20261116T221715Z-S-005.json"
     checkpoint_commit: "(see git log: checkpoint(S-005))"
+  - at: "20261116T222052Z"
+    scope: story
+    story: S-006
+    command: "npm test (42) + npm run e2e (8) + pg_policies read"
+    passed: 50
+    failed: 0
+    eval_scores: { summary: "J-2 (2 taps → 24/38), J-3, J-4, J-7 pass; G-03 structural (all write policies require owner uid); C-03/C-09/C-10 UI pass" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T222052Z-S-006.json"
+    checkpoint_commit: "(see git log: checkpoint(S-006))"
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
