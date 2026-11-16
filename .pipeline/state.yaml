@@ -7,7 +7,7 @@ pipeline:
   created: "2026-11-16"
 
 gates:
-  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "dab13d79997f", passed_at: "2026-11-16" }
+  brainstorm:            { status: passed, mode: gap-interview, artifact: ".pipeline/Brainstorm-Brief.md", artifact_sha: "51d7bb4e6423", passed_at: "2026-11-16" }
   market-scan:
     status: skipped(D-001)
     recon_done: false

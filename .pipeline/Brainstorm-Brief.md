@@ -43,7 +43,8 @@ Test instrument: founder-as-user prototype click-through: log a workout from the
 - [ ] 45-day calendar grid: counted days filled with type icon, greyed non-counted, today marked, future days empty — every visit
 - [ ] Stats: total minutes, current & longest streak, pace needed vs actual, breakdown by type, avg session length — every visit
 - [ ] Daily quote — mixed tone (motivational / playful / mindful), same quote for everyone that day — daily
-- [ ] Workout log list (newest first), owner can delete/edit a mistaken entry — on demand
+- [ ] History page: all workouts newest first; owner can edit/delete there (D-016) — on demand
+- [ ] Live updates: open pages refresh when the owner logs (D-015) — every log
 - [ ] Public read, owner-only write (Supabase RLS) — always
 - [ ] Installable PWA (manifest, icon, offline shell) — once
 - [ ] Backfill 5 workouts (see Seed Data) — one-time → a seed script, not a feature
@@ -57,9 +58,9 @@ Test instrument: founder-as-user prototype click-through: log a workout from the
 | Core & Stretch | YMCA | 30 |
 | Kettlebell | YMCA | 30 |
 | Yoga class | YMCA | 30 |
-| Gym (solo) | YMCA | 30 |
+| Gym time | YMCA | 30 |
 | Home yoga | Home | 45 |
-| Home workout | Home | 45 |
+| Other | owner picks YMCA or home | 30 / 45 |
 
 ## Seed Data (backfill — corrected per D-006 resolution)
 | Date | Type | Min | Counts |

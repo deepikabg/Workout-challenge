@@ -69,7 +69,7 @@ Trigger: user ask + ruling (custom drawn, matched to colours)
 Affects: Prototype     Decided by: human · approved: y
 Supersedes: —
 
-## D-012 · prototype · 2026-11-16 · status: accepted
+## D-012 · prototype · 2026-11-16 · status: applied
 Decision: Page title "Dee's workout challenge" (owner's name visible to friends). Workout list (final): Gravity, TotalTone, Core & Stretch, Kettlebell, Yoga class, Gym time (all YMCA, 30 min) · Home yoga (home, 45 min) · Other (owner picks YMCA or home → that minimum). "Home workout" dropped; "Gym (solo)" renamed "Gym time".
 Trigger: user answers
 Affects: Prototype · Brainstorm-Brief (type table) · Eval-Spec (C-03 type mapping)     Decided by: human · approved: y
