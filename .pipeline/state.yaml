@@ -40,11 +40,11 @@ gates:
     traceability: complete
     plan_approved_by: "owner (chat) 2026-11-16"
     github: { synced: true, project_url: "issues #1-#10 (labels batch-N); Projects board unavailable in this environment" }
-  deploy-gate:           { status: awaiting-prod-approval, report: ".pipeline/Deploy-Gate.md", staging_url: "n/a (no staging; localhost pre-handoff)", prod_approved_by: "", approved_at: "" }
+  deploy-gate:           { status: passed, report: ".pipeline/Deploy-Gate.md", staging_url: "n/a (no staging; localhost pre-handoff)", prod_url: "https://deepikabg.github.io/workout-challenge/", prod_approved_by: "owner (merged PR #11)", approved_at: "2026-11-16", deploy_run: "https://github.com/deepikabg/Workout-challenge/actions/runs/43978143133" }
   qa-verify:
     pre_handoff: { status: passed, target: "localhost (stubbed Supabase) + live API checks in Actions", report: ".pipeline/Deploy-Gate.md", verdict: "green", day0_checklist: "pass" }
     staging:     { status: pending, report: "", verdict: "" }
-    prod:        { status: pending, report: "", verdict: "", monitoring_window_end: "" }
+    prod:        { status: in-progress, report: "", verdict: "", pending: ["realtime push on live site", "J-5 add to home screen + stay signed in", "real-phone render"], monitoring_window_end: "" }
 
 triad_approval:
   approved: true
@@ -199,7 +199,7 @@ build:
     - { id: H-1, when: after S-002, what: "Supabase Auth → Users → Add user (owner email)", status: done, owner_uuid: "7bcf9a92-b2ba-4992-9b33-a1313a70e446", note: "recreated with password (D-029)" }
     - { id: H-2, when: after S-002, what: "Auth email template includes {{ .Token }}", status: dropped, reason: "D-029 password sign-in" }
     - { id: H-3, when: after S-006, what: "Disable new sign-ups", status: done, note: "verified live: /auth/v1/settings disable_signup=true (Actions run 43970030441)" }
-    - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: pending }
+    - { id: H-4, when: deploy-gate, what: "Pages source = GitHub Actions; merge PR to main", status: done }
 
 test_runs:
   - at: "20261116T214207Z"
@@ -320,6 +320,7 @@ git:
   create_remote_declined: false
 
 approvals:
+  - { action: "production deploy: merge PR #11 to main → GitHub Pages", target: "https://deepikabg.github.io/workout-challenge/", approved_by: owner (merged), at: "2026-11-16", rollback_plan: "revert merge commit on main" }
   - { action: "create Supabase project workout-challenge (ca-central-1, free) + run migrations 001/002", target: "Supabase org wjavfhrmfcfxzfdbpecp", approved_by: owner (chat), at: "2026-11-16", rollback_plan: "delete/pause project from dashboard; migrations are additive on an empty project" }
 parked: []
 decisions: ".pipeline/DECISIONS.md"

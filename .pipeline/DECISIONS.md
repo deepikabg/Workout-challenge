@@ -190,3 +190,9 @@ Decision: Remove the "New one tomorrow" line under the daily quote (app + protot
 Trigger: owner ask
 Affects: Prototype (copy)     Decided by: human · approved: y — owner's request taken as triad re-approval for this copy change
 Supersedes: —
+
+## D-032 · deploy-gate · 2026-11-16 · status: applied
+Decision: Go live. `main` created from the first commit so PR #11 had a target; owner merged it, switched the repo default branch to `main`, and added `main` to the github-pages environment's deployment-branch rule (the rule had captured the old default branch, which blocked the first two deploys). Deploy run 43978143133 green; keep-alive run 43978225771 green.
+Trigger: owner approval (merge)
+Affects: —     Decided by: human · approved: y
+Supersedes: —
