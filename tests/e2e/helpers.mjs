@@ -18,3 +18,17 @@ export async function stubSupabase(page, { rows = [], fail = false, onWrite } = 
   });
   await page.route(/supabase\.co\/realtime/, route => route.abort());
 }
+
+export const OWNER_ID = '7bcf9a92-b2ba-4992-9b33-a1313a70e446';
+/** Stubs Supabase Auth's password grant. `password` is the only one accepted. */
+export async function stubAuth(page, { password = 'right-password', userId = OWNER_ID } = {}) {
+  await page.route(/supabase\.co\/auth\/v1\/token/, async route => {
+    const body = JSON.parse(route.request().postData() || '{}');
+    if (body.password !== password) return route.fulfill({ status: 400, contentType: 'application/json', body: JSON.stringify({ code: 'invalid_credentials', error_code: 'invalid_credentials', msg: 'Invalid login credentials' }) });
+    const now = Math.floor(Date.now() / 1000);
+    const user = { id: userId, aud: 'authenticated', role: 'authenticated', email: body.email, app_metadata: {}, user_metadata: {}, created_at: '2026-11-16T00:00:00Z' };
+    return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ access_token: 'test.' + now, token_type: 'bearer', expires_in: 3600, expires_at: now + 3600, refresh_token: 'r', user }) });
+  });
+  await page.route(/supabase\.co\/auth\/v1\/logout/, route => route.fulfill({ status: 204, body: '' }));
+  await page.route(/supabase\.co\/auth\/v1\/user/, route => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ id: userId, aud: 'authenticated', role: 'authenticated' }) }));
+}

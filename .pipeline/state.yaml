@@ -126,8 +126,8 @@ build:
       batch: 3
       parallel: false
       github_issue: 5
-      failing_test_written: false
-      status: pending
+      failing_test_written: true
+      status: done
       budget: { max_iterations: 5, used: 0 }
       worker_context: fresh
     - id: S-006
@@ -247,6 +247,17 @@ test_runs:
     ship_gate: BINDABLE
     report_path: ".pipeline/results/20261116T221444Z-S-004.json"
     checkpoint_commit: "(see git log: checkpoint(S-004))"
+  - at: "20261116T221715Z"
+    scope: story
+    story: S-005
+    command: "npm test (37) + npm run e2e (4)"
+    passed: 41
+    failed: 0
+    eval_scores: { summary: "C-14 pass (unit + browser 48h30m); G-04 client has no sign-up path; J-2 sign-in step pass" }
+    guardrail_violations: 0
+    ship_gate: BINDABLE
+    report_path: ".pipeline/results/20261116T221715Z-S-005.json"
+    checkpoint_commit: "(see git log: checkpoint(S-005))"
 git:
   remote: https://github.com/deepikabg/workout-challenge   # public (owner, 2026-11-16)
   checkpoint_branch: ccr-b35d4b70-ig1nan
